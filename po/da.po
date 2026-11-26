@@ -1,0 +1,164 @@
+# Barretta translation
+msgid ""
+msgstr ""
+"Project-Id-Version: barretta 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-26 01:46+0100\n"
+"PO-Revision-Date: 2026-11-26 00:00+0100\n"
+"Last-Translator: Barretta\n"
+"Language-Team: da\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: barretta@andreafontana.it/extension.js:172
+#, javascript-format
+msgid "screen %d"
+msgstr "skærm %d"
+
+#: barretta@andreafontana.it/extension.js:177
+#, javascript-format
+msgid "desktop %d"
+msgstr "skrivebord %d"
+
+#: barretta@andreafontana.it/extension.js:274
+#, javascript-format
+msgid "On screen %d"
+msgstr "På skærm %d"
+
+#: barretta@andreafontana.it/extension.js:276
+#, javascript-format
+msgid "On desktop %d"
+msgstr "På skrivebord %d"
+
+#: barretta@andreafontana.it/extension.js:276
+msgid "Elsewhere"
+msgstr "Et andet sted"
+
+#: barretta@andreafontana.it/extension.js:422
+#: barretta@andreafontana.it/extension.js:940
+msgid "On this screen"
+msgstr "På denne skærm"
+
+#: barretta@andreafontana.it/extension.js:951
+msgid "New window here"
+msgstr "Nyt vindue her"
+
+#: barretta@andreafontana.it/extension.js:966
+msgid "Recent files"
+msgstr "Seneste filer"
+
+#: barretta@andreafontana.it/extension.js:979
+msgid "Unpin"
+msgstr "Frigør"
+
+#: barretta@andreafontana.it/extension.js:981
+msgid "Pin"
+msgstr "Fastgør"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Stop keeping first"
+msgstr "Hold ikke længere først"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Keep first"
+msgstr "Hold først"
+
+#: barretta@andreafontana.it/extension.js:988
+msgid "Quit"
+msgstr "Afslut"
+
+#: barretta@andreafontana.it/extension.js:1214
+#: barretta@andreafontana.it/extension.js:2212
+#, javascript-format
+msgid "Screen %d"
+msgstr "Skærm %d"
+
+#: barretta@andreafontana.it/extension.js:1338
+#: barretta@andreafontana.it/extension.js:2515
+msgid "System tray"
+msgstr "Statusfelt"
+
+#: barretta@andreafontana.it/extension.js:2117
+msgid "Search: title, app, “desktop 2”…"
+msgstr "Søg: titel, app, “skrivebord 2”…"
+
+#: barretta@andreafontana.it/extension.js:2129
+msgid "No windows found"
+msgstr "Ingen vinduer fundet"
+
+#: barretta@andreafontana.it/extension.js:2134
+msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
+msgstr "Enter: gå til vinduet · Ctrl+Enter: behold bjælken filtreret"
+
+#: barretta@andreafontana.it/extension.js:2215
+#, javascript-format
+msgid "Desktop %d"
+msgstr "Skrivebord %d"
+
+#: barretta@andreafontana.it/extension.js:2244
+msgid "type to narrow down"
+msgstr "skriv for at indsnævre"
+
+#: barretta@andreafontana.it/extension.js:2436
+msgid "A light app bar: zero calories for your CPU."
+msgstr "En let app-bjælke: nul kalorier til din processor."
+
+#: barretta@andreafontana.it/extension.js:2437
+#, javascript-format
+msgid "Version %s"
+msgstr "Version %s"
+
+#: barretta@andreafontana.it/extension.js:2442
+#: barretta@andreafontana.it/extension.js:2449
+msgid "Bar size"
+msgstr "Bjælkens størrelse"
+
+#: barretta@andreafontana.it/extension.js:2473
+msgid "Small"
+msgstr "Lille"
+
+#: barretta@andreafontana.it/extension.js:2474
+msgid "Large"
+msgstr "Stor"
+
+#: barretta@andreafontana.it/extension.js:2492
+msgid "Position"
+msgstr "Placering"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Left"
+msgstr "Venstre"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Bottom"
+msgstr "Nederst"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Right"
+msgstr "Højre"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Off"
+msgstr "Fra"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Drawer"
+msgstr "Skuffe"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Visible"
+msgstr "Synlige"
+
+#: barretta@andreafontana.it/extension.js:2551
+msgid "Visible icons"
+msgstr "Synlige ikoner"
+
+#: barretta@andreafontana.it/extension.js:2559
+msgid "All"
+msgstr "Alle"
+
+#: barretta@andreafontana.it/extension.js:2568
+msgid "Hide automatically"
+msgstr "Skjul automatisk"

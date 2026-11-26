@@ -1,0 +1,164 @@
+# Barretta translation
+msgid ""
+msgstr ""
+"Project-Id-Version: barretta 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-26 01:46+0100\n"
+"PO-Revision-Date: 2026-11-26 00:00+0100\n"
+"Last-Translator: Barretta\n"
+"Language-Team: ro\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: barretta@andreafontana.it/extension.js:172
+#, javascript-format
+msgid "screen %d"
+msgstr "ecran %d"
+
+#: barretta@andreafontana.it/extension.js:177
+#, javascript-format
+msgid "desktop %d"
+msgstr "birou %d"
+
+#: barretta@andreafontana.it/extension.js:274
+#, javascript-format
+msgid "On screen %d"
+msgstr "Pe ecranul %d"
+
+#: barretta@andreafontana.it/extension.js:276
+#, javascript-format
+msgid "On desktop %d"
+msgstr "Pe biroul %d"
+
+#: barretta@andreafontana.it/extension.js:276
+msgid "Elsewhere"
+msgstr "În altă parte"
+
+#: barretta@andreafontana.it/extension.js:422
+#: barretta@andreafontana.it/extension.js:940
+msgid "On this screen"
+msgstr "Pe acest ecran"
+
+#: barretta@andreafontana.it/extension.js:951
+msgid "New window here"
+msgstr "Fereastră nouă aici"
+
+#: barretta@andreafontana.it/extension.js:966
+msgid "Recent files"
+msgstr "Fișiere recente"
+
+#: barretta@andreafontana.it/extension.js:979
+msgid "Unpin"
+msgstr "Anulează fixarea"
+
+#: barretta@andreafontana.it/extension.js:981
+msgid "Pin"
+msgstr "Fixează"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Stop keeping first"
+msgstr "Nu mai păstra primul"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Keep first"
+msgstr "Păstrează primul"
+
+#: barretta@andreafontana.it/extension.js:988
+msgid "Quit"
+msgstr "Ieșire"
+
+#: barretta@andreafontana.it/extension.js:1214
+#: barretta@andreafontana.it/extension.js:2212
+#, javascript-format
+msgid "Screen %d"
+msgstr "Ecranul %d"
+
+#: barretta@andreafontana.it/extension.js:1338
+#: barretta@andreafontana.it/extension.js:2515
+msgid "System tray"
+msgstr "Zona de notificare"
+
+#: barretta@andreafontana.it/extension.js:2117
+msgid "Search: title, app, “desktop 2”…"
+msgstr "Caută: titlu, aplicație, „birou 2”…"
+
+#: barretta@andreafontana.it/extension.js:2129
+msgid "No windows found"
+msgstr "Nicio fereastră găsită"
+
+#: barretta@andreafontana.it/extension.js:2134
+msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
+msgstr "Enter: mergi la fereastră · Ctrl+Enter: păstrează bara filtrată"
+
+#: barretta@andreafontana.it/extension.js:2215
+#, javascript-format
+msgid "Desktop %d"
+msgstr "Biroul %d"
+
+#: barretta@andreafontana.it/extension.js:2244
+msgid "type to narrow down"
+msgstr "tastați pentru a restrânge"
+
+#: barretta@andreafontana.it/extension.js:2436
+msgid "A light app bar: zero calories for your CPU."
+msgstr "O bară de aplicații ușoară: zero calorii pentru procesorul tău."
+
+#: barretta@andreafontana.it/extension.js:2437
+#, javascript-format
+msgid "Version %s"
+msgstr "Versiunea %s"
+
+#: barretta@andreafontana.it/extension.js:2442
+#: barretta@andreafontana.it/extension.js:2449
+msgid "Bar size"
+msgstr "Dimensiunea barei"
+
+#: barretta@andreafontana.it/extension.js:2473
+msgid "Small"
+msgstr "Mică"
+
+#: barretta@andreafontana.it/extension.js:2474
+msgid "Large"
+msgstr "Mare"
+
+#: barretta@andreafontana.it/extension.js:2492
+msgid "Position"
+msgstr "Poziție"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Left"
+msgstr "Stânga"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Bottom"
+msgstr "Jos"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Right"
+msgstr "Dreapta"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Off"
+msgstr "Oprită"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Drawer"
+msgstr "Sertar"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Visible"
+msgstr "Vizibile"
+
+#: barretta@andreafontana.it/extension.js:2551
+msgid "Visible icons"
+msgstr "Pictograme vizibile"
+
+#: barretta@andreafontana.it/extension.js:2559
+msgid "All"
+msgstr "Toate"
+
+#: barretta@andreafontana.it/extension.js:2568
+msgid "Hide automatically"
+msgstr "Ascunde automat"

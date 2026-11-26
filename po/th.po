@@ -1,0 +1,164 @@
+# Barretta translation
+msgid ""
+msgstr ""
+"Project-Id-Version: barretta 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-26 01:46+0100\n"
+"PO-Revision-Date: 2026-11-26 00:00+0100\n"
+"Last-Translator: Barretta\n"
+"Language-Team: th\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: barretta@andreafontana.it/extension.js:172
+#, javascript-format
+msgid "screen %d"
+msgstr "หน้าจอ %d"
+
+#: barretta@andreafontana.it/extension.js:177
+#, javascript-format
+msgid "desktop %d"
+msgstr "เดสก์ท็อป %d"
+
+#: barretta@andreafontana.it/extension.js:274
+#, javascript-format
+msgid "On screen %d"
+msgstr "บนหน้าจอ %d"
+
+#: barretta@andreafontana.it/extension.js:276
+#, javascript-format
+msgid "On desktop %d"
+msgstr "บนเดสก์ท็อป %d"
+
+#: barretta@andreafontana.it/extension.js:276
+msgid "Elsewhere"
+msgstr "ที่อื่น"
+
+#: barretta@andreafontana.it/extension.js:422
+#: barretta@andreafontana.it/extension.js:940
+msgid "On this screen"
+msgstr "บนหน้าจอนี้"
+
+#: barretta@andreafontana.it/extension.js:951
+msgid "New window here"
+msgstr "หน้าต่างใหม่ที่นี่"
+
+#: barretta@andreafontana.it/extension.js:966
+msgid "Recent files"
+msgstr "ไฟล์ล่าสุด"
+
+#: barretta@andreafontana.it/extension.js:979
+msgid "Unpin"
+msgstr "เลิกปักหมุด"
+
+#: barretta@andreafontana.it/extension.js:981
+msgid "Pin"
+msgstr "ปักหมุด"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Stop keeping first"
+msgstr "เลิกคงไว้ลำดับแรก"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Keep first"
+msgstr "คงไว้ลำดับแรก"
+
+#: barretta@andreafontana.it/extension.js:988
+msgid "Quit"
+msgstr "ออก"
+
+#: barretta@andreafontana.it/extension.js:1214
+#: barretta@andreafontana.it/extension.js:2212
+#, javascript-format
+msgid "Screen %d"
+msgstr "หน้าจอ %d"
+
+#: barretta@andreafontana.it/extension.js:1338
+#: barretta@andreafontana.it/extension.js:2515
+msgid "System tray"
+msgstr "ถาดระบบ"
+
+#: barretta@andreafontana.it/extension.js:2117
+msgid "Search: title, app, “desktop 2”…"
+msgstr "ค้นหา: ชื่อเรื่อง แอป “เดสก์ท็อป 2”…"
+
+#: barretta@andreafontana.it/extension.js:2129
+msgid "No windows found"
+msgstr "ไม่พบหน้าต่าง"
+
+#: barretta@andreafontana.it/extension.js:2134
+msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
+msgstr "Enter: ไปที่หน้าต่าง · Ctrl+Enter: คงการกรองแถบไว้"
+
+#: barretta@andreafontana.it/extension.js:2215
+#, javascript-format
+msgid "Desktop %d"
+msgstr "เดสก์ท็อป %d"
+
+#: barretta@andreafontana.it/extension.js:2244
+msgid "type to narrow down"
+msgstr "พิมพ์เพื่อจำกัดผล"
+
+#: barretta@andreafontana.it/extension.js:2436
+msgid "A light app bar: zero calories for your CPU."
+msgstr "แถบแอปที่เบา: ศูนย์แคลอรีสำหรับ CPU ของคุณ"
+
+#: barretta@andreafontana.it/extension.js:2437
+#, javascript-format
+msgid "Version %s"
+msgstr "รุ่น %s"
+
+#: barretta@andreafontana.it/extension.js:2442
+#: barretta@andreafontana.it/extension.js:2449
+msgid "Bar size"
+msgstr "ขนาดแถบ"
+
+#: barretta@andreafontana.it/extension.js:2473
+msgid "Small"
+msgstr "เล็ก"
+
+#: barretta@andreafontana.it/extension.js:2474
+msgid "Large"
+msgstr "ใหญ่"
+
+#: barretta@andreafontana.it/extension.js:2492
+msgid "Position"
+msgstr "ตำแหน่ง"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Left"
+msgstr "ซ้าย"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Bottom"
+msgstr "ล่าง"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Right"
+msgstr "ขวา"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Off"
+msgstr "ปิด"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Drawer"
+msgstr "ลิ้นชัก"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Visible"
+msgstr "แสดง"
+
+#: barretta@andreafontana.it/extension.js:2551
+msgid "Visible icons"
+msgstr "ไอคอนที่แสดง"
+
+#: barretta@andreafontana.it/extension.js:2559
+msgid "All"
+msgstr "ทั้งหมด"
+
+#: barretta@andreafontana.it/extension.js:2568
+msgid "Hide automatically"
+msgstr "ซ่อนอัตโนมัติ"

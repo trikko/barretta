@@ -1,0 +1,164 @@
+# Barretta translation
+msgid ""
+msgstr ""
+"Project-Id-Version: barretta 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-26 01:46+0100\n"
+"PO-Revision-Date: 2026-11-26 00:00+0100\n"
+"Last-Translator: Barretta\n"
+"Language-Team: vi\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: barretta@andreafontana.it/extension.js:172
+#, javascript-format
+msgid "screen %d"
+msgstr "màn hình %d"
+
+#: barretta@andreafontana.it/extension.js:177
+#, javascript-format
+msgid "desktop %d"
+msgstr "màn hình nền %d"
+
+#: barretta@andreafontana.it/extension.js:274
+#, javascript-format
+msgid "On screen %d"
+msgstr "Trên màn hình %d"
+
+#: barretta@andreafontana.it/extension.js:276
+#, javascript-format
+msgid "On desktop %d"
+msgstr "Trên màn hình nền %d"
+
+#: barretta@andreafontana.it/extension.js:276
+msgid "Elsewhere"
+msgstr "Ở nơi khác"
+
+#: barretta@andreafontana.it/extension.js:422
+#: barretta@andreafontana.it/extension.js:940
+msgid "On this screen"
+msgstr "Trên màn hình này"
+
+#: barretta@andreafontana.it/extension.js:951
+msgid "New window here"
+msgstr "Cửa sổ mới tại đây"
+
+#: barretta@andreafontana.it/extension.js:966
+msgid "Recent files"
+msgstr "Tệp gần đây"
+
+#: barretta@andreafontana.it/extension.js:979
+msgid "Unpin"
+msgstr "Bỏ ghim"
+
+#: barretta@andreafontana.it/extension.js:981
+msgid "Pin"
+msgstr "Ghim"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Stop keeping first"
+msgstr "Thôi giữ ở đầu"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Keep first"
+msgstr "Giữ ở đầu"
+
+#: barretta@andreafontana.it/extension.js:988
+msgid "Quit"
+msgstr "Thoát"
+
+#: barretta@andreafontana.it/extension.js:1214
+#: barretta@andreafontana.it/extension.js:2212
+#, javascript-format
+msgid "Screen %d"
+msgstr "Màn hình %d"
+
+#: barretta@andreafontana.it/extension.js:1338
+#: barretta@andreafontana.it/extension.js:2515
+msgid "System tray"
+msgstr "Khay hệ thống"
+
+#: barretta@andreafontana.it/extension.js:2117
+msgid "Search: title, app, “desktop 2”…"
+msgstr "Tìm: tiêu đề, ứng dụng, “màn hình nền 2”…"
+
+#: barretta@andreafontana.it/extension.js:2129
+msgid "No windows found"
+msgstr "Không tìm thấy cửa sổ"
+
+#: barretta@andreafontana.it/extension.js:2134
+msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
+msgstr "Enter: đến cửa sổ · Ctrl+Enter: giữ thanh đã lọc"
+
+#: barretta@andreafontana.it/extension.js:2215
+#, javascript-format
+msgid "Desktop %d"
+msgstr "Màn hình nền %d"
+
+#: barretta@andreafontana.it/extension.js:2244
+msgid "type to narrow down"
+msgstr "gõ để thu hẹp"
+
+#: barretta@andreafontana.it/extension.js:2436
+msgid "A light app bar: zero calories for your CPU."
+msgstr "Thanh ứng dụng nhẹ: không calo cho CPU của bạn."
+
+#: barretta@andreafontana.it/extension.js:2437
+#, javascript-format
+msgid "Version %s"
+msgstr "Phiên bản %s"
+
+#: barretta@andreafontana.it/extension.js:2442
+#: barretta@andreafontana.it/extension.js:2449
+msgid "Bar size"
+msgstr "Kích thước thanh"
+
+#: barretta@andreafontana.it/extension.js:2473
+msgid "Small"
+msgstr "Nhỏ"
+
+#: barretta@andreafontana.it/extension.js:2474
+msgid "Large"
+msgstr "Lớn"
+
+#: barretta@andreafontana.it/extension.js:2492
+msgid "Position"
+msgstr "Vị trí"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Left"
+msgstr "Trái"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Bottom"
+msgstr "Dưới"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Right"
+msgstr "Phải"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Off"
+msgstr "Tắt"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Drawer"
+msgstr "Ngăn kéo"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Visible"
+msgstr "Hiển thị"
+
+#: barretta@andreafontana.it/extension.js:2551
+msgid "Visible icons"
+msgstr "Biểu tượng hiển thị"
+
+#: barretta@andreafontana.it/extension.js:2559
+msgid "All"
+msgstr "Tất cả"
+
+#: barretta@andreafontana.it/extension.js:2568
+msgid "Hide automatically"
+msgstr "Tự động ẩn"

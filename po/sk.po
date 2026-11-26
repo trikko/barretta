@@ -1,0 +1,164 @@
+# Barretta translation
+msgid ""
+msgstr ""
+"Project-Id-Version: barretta 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-26 01:46+0100\n"
+"PO-Revision-Date: 2026-11-26 00:00+0100\n"
+"Last-Translator: Barretta\n"
+"Language-Team: sk\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: barretta@andreafontana.it/extension.js:172
+#, javascript-format
+msgid "screen %d"
+msgstr "obrazovka %d"
+
+#: barretta@andreafontana.it/extension.js:177
+#, javascript-format
+msgid "desktop %d"
+msgstr "plocha %d"
+
+#: barretta@andreafontana.it/extension.js:274
+#, javascript-format
+msgid "On screen %d"
+msgstr "Na obrazovke %d"
+
+#: barretta@andreafontana.it/extension.js:276
+#, javascript-format
+msgid "On desktop %d"
+msgstr "Na ploche %d"
+
+#: barretta@andreafontana.it/extension.js:276
+msgid "Elsewhere"
+msgstr "Inde"
+
+#: barretta@andreafontana.it/extension.js:422
+#: barretta@andreafontana.it/extension.js:940
+msgid "On this screen"
+msgstr "Na tejto obrazovke"
+
+#: barretta@andreafontana.it/extension.js:951
+msgid "New window here"
+msgstr "Nové okno tu"
+
+#: barretta@andreafontana.it/extension.js:966
+msgid "Recent files"
+msgstr "Nedávne súbory"
+
+#: barretta@andreafontana.it/extension.js:979
+msgid "Unpin"
+msgstr "Odopnúť"
+
+#: barretta@andreafontana.it/extension.js:981
+msgid "Pin"
+msgstr "Pripnúť"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Stop keeping first"
+msgstr "Prestať držať na začiatku"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Keep first"
+msgstr "Držať na začiatku"
+
+#: barretta@andreafontana.it/extension.js:988
+msgid "Quit"
+msgstr "Ukončiť"
+
+#: barretta@andreafontana.it/extension.js:1214
+#: barretta@andreafontana.it/extension.js:2212
+#, javascript-format
+msgid "Screen %d"
+msgstr "Obrazovka %d"
+
+#: barretta@andreafontana.it/extension.js:1338
+#: barretta@andreafontana.it/extension.js:2515
+msgid "System tray"
+msgstr "Oznamovacia oblasť"
+
+#: barretta@andreafontana.it/extension.js:2117
+msgid "Search: title, app, “desktop 2”…"
+msgstr "Hľadať: názov, aplikácia, „plocha 2“…"
+
+#: barretta@andreafontana.it/extension.js:2129
+msgid "No windows found"
+msgstr "Nenašli sa žiadne okná"
+
+#: barretta@andreafontana.it/extension.js:2134
+msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
+msgstr "Enter: prejsť na okno · Ctrl+Enter: ponechať lištu filtrovanú"
+
+#: barretta@andreafontana.it/extension.js:2215
+#, javascript-format
+msgid "Desktop %d"
+msgstr "Plocha %d"
+
+#: barretta@andreafontana.it/extension.js:2244
+msgid "type to narrow down"
+msgstr "píšte na zúženie"
+
+#: barretta@andreafontana.it/extension.js:2436
+msgid "A light app bar: zero calories for your CPU."
+msgstr "Ľahká lišta aplikácií: nula kalórií pre váš procesor."
+
+#: barretta@andreafontana.it/extension.js:2437
+#, javascript-format
+msgid "Version %s"
+msgstr "Verzia %s"
+
+#: barretta@andreafontana.it/extension.js:2442
+#: barretta@andreafontana.it/extension.js:2449
+msgid "Bar size"
+msgstr "Veľkosť lišty"
+
+#: barretta@andreafontana.it/extension.js:2473
+msgid "Small"
+msgstr "Malá"
+
+#: barretta@andreafontana.it/extension.js:2474
+msgid "Large"
+msgstr "Veľká"
+
+#: barretta@andreafontana.it/extension.js:2492
+msgid "Position"
+msgstr "Umiestnenie"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Left"
+msgstr "Vľavo"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Bottom"
+msgstr "Dole"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Right"
+msgstr "Vpravo"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Off"
+msgstr "Vypnuté"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Drawer"
+msgstr "Šuflík"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Visible"
+msgstr "Viditeľné"
+
+#: barretta@andreafontana.it/extension.js:2551
+msgid "Visible icons"
+msgstr "Viditeľné ikony"
+
+#: barretta@andreafontana.it/extension.js:2559
+msgid "All"
+msgstr "Všetky"
+
+#: barretta@andreafontana.it/extension.js:2568
+msgid "Hide automatically"
+msgstr "Automaticky skrývať"

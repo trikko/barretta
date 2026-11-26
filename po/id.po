@@ -1,0 +1,164 @@
+# Barretta translation
+msgid ""
+msgstr ""
+"Project-Id-Version: barretta 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-26 01:46+0100\n"
+"PO-Revision-Date: 2026-11-26 00:00+0100\n"
+"Last-Translator: Barretta\n"
+"Language-Team: id\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: barretta@andreafontana.it/extension.js:172
+#, javascript-format
+msgid "screen %d"
+msgstr "layar %d"
+
+#: barretta@andreafontana.it/extension.js:177
+#, javascript-format
+msgid "desktop %d"
+msgstr "desktop %d"
+
+#: barretta@andreafontana.it/extension.js:274
+#, javascript-format
+msgid "On screen %d"
+msgstr "Di layar %d"
+
+#: barretta@andreafontana.it/extension.js:276
+#, javascript-format
+msgid "On desktop %d"
+msgstr "Di desktop %d"
+
+#: barretta@andreafontana.it/extension.js:276
+msgid "Elsewhere"
+msgstr "Di tempat lain"
+
+#: barretta@andreafontana.it/extension.js:422
+#: barretta@andreafontana.it/extension.js:940
+msgid "On this screen"
+msgstr "Di layar ini"
+
+#: barretta@andreafontana.it/extension.js:951
+msgid "New window here"
+msgstr "Jendela baru di sini"
+
+#: barretta@andreafontana.it/extension.js:966
+msgid "Recent files"
+msgstr "Berkas terbaru"
+
+#: barretta@andreafontana.it/extension.js:979
+msgid "Unpin"
+msgstr "Lepas sematan"
+
+#: barretta@andreafontana.it/extension.js:981
+msgid "Pin"
+msgstr "Sematkan"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Stop keeping first"
+msgstr "Jangan pertahankan di depan"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Keep first"
+msgstr "Pertahankan di depan"
+
+#: barretta@andreafontana.it/extension.js:988
+msgid "Quit"
+msgstr "Keluar"
+
+#: barretta@andreafontana.it/extension.js:1214
+#: barretta@andreafontana.it/extension.js:2212
+#, javascript-format
+msgid "Screen %d"
+msgstr "Layar %d"
+
+#: barretta@andreafontana.it/extension.js:1338
+#: barretta@andreafontana.it/extension.js:2515
+msgid "System tray"
+msgstr "Baki sistem"
+
+#: barretta@andreafontana.it/extension.js:2117
+msgid "Search: title, app, “desktop 2”…"
+msgstr "Cari: judul, aplikasi, “desktop 2”…"
+
+#: barretta@andreafontana.it/extension.js:2129
+msgid "No windows found"
+msgstr "Tidak ada jendela"
+
+#: barretta@andreafontana.it/extension.js:2134
+msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
+msgstr "Enter: buka jendela · Ctrl+Enter: biarkan bilah tetap tersaring"
+
+#: barretta@andreafontana.it/extension.js:2215
+#, javascript-format
+msgid "Desktop %d"
+msgstr "Desktop %d"
+
+#: barretta@andreafontana.it/extension.js:2244
+msgid "type to narrow down"
+msgstr "ketik untuk mempersempit"
+
+#: barretta@andreafontana.it/extension.js:2436
+msgid "A light app bar: zero calories for your CPU."
+msgstr "Bilah aplikasi yang ringan: nol kalori untuk CPU Anda."
+
+#: barretta@andreafontana.it/extension.js:2437
+#, javascript-format
+msgid "Version %s"
+msgstr "Versi %s"
+
+#: barretta@andreafontana.it/extension.js:2442
+#: barretta@andreafontana.it/extension.js:2449
+msgid "Bar size"
+msgstr "Ukuran bilah"
+
+#: barretta@andreafontana.it/extension.js:2473
+msgid "Small"
+msgstr "Kecil"
+
+#: barretta@andreafontana.it/extension.js:2474
+msgid "Large"
+msgstr "Besar"
+
+#: barretta@andreafontana.it/extension.js:2492
+msgid "Position"
+msgstr "Posisi"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Left"
+msgstr "Kiri"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Bottom"
+msgstr "Bawah"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Right"
+msgstr "Kanan"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Off"
+msgstr "Mati"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Drawer"
+msgstr "Laci"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Visible"
+msgstr "Terlihat"
+
+#: barretta@andreafontana.it/extension.js:2551
+msgid "Visible icons"
+msgstr "Ikon terlihat"
+
+#: barretta@andreafontana.it/extension.js:2559
+msgid "All"
+msgstr "Semua"
+
+#: barretta@andreafontana.it/extension.js:2568
+msgid "Hide automatically"
+msgstr "Sembunyikan otomatis"

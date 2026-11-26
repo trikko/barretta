@@ -1,0 +1,164 @@
+# Barretta translation
+msgid ""
+msgstr ""
+"Project-Id-Version: barretta 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-26 01:46+0100\n"
+"PO-Revision-Date: 2026-11-26 00:00+0100\n"
+"Last-Translator: Barretta\n"
+"Language-Team: zh_TW\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: barretta@andreafontana.it/extension.js:172
+#, javascript-format
+msgid "screen %d"
+msgstr "螢幕 %d"
+
+#: barretta@andreafontana.it/extension.js:177
+#, javascript-format
+msgid "desktop %d"
+msgstr "桌面 %d"
+
+#: barretta@andreafontana.it/extension.js:274
+#, javascript-format
+msgid "On screen %d"
+msgstr "在螢幕 %d 上"
+
+#: barretta@andreafontana.it/extension.js:276
+#, javascript-format
+msgid "On desktop %d"
+msgstr "在桌面 %d 上"
+
+#: barretta@andreafontana.it/extension.js:276
+msgid "Elsewhere"
+msgstr "在其他地方"
+
+#: barretta@andreafontana.it/extension.js:422
+#: barretta@andreafontana.it/extension.js:940
+msgid "On this screen"
+msgstr "在此螢幕上"
+
+#: barretta@andreafontana.it/extension.js:951
+msgid "New window here"
+msgstr "在此開新視窗"
+
+#: barretta@andreafontana.it/extension.js:966
+msgid "Recent files"
+msgstr "最近的檔案"
+
+#: barretta@andreafontana.it/extension.js:979
+msgid "Unpin"
+msgstr "取消釘選"
+
+#: barretta@andreafontana.it/extension.js:981
+msgid "Pin"
+msgstr "釘選"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Stop keeping first"
+msgstr "不再保持在最前"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Keep first"
+msgstr "保持在最前"
+
+#: barretta@andreafontana.it/extension.js:988
+msgid "Quit"
+msgstr "結束"
+
+#: barretta@andreafontana.it/extension.js:1214
+#: barretta@andreafontana.it/extension.js:2212
+#, javascript-format
+msgid "Screen %d"
+msgstr "螢幕 %d"
+
+#: barretta@andreafontana.it/extension.js:1338
+#: barretta@andreafontana.it/extension.js:2515
+msgid "System tray"
+msgstr "系統匣"
+
+#: barretta@andreafontana.it/extension.js:2117
+msgid "Search: title, app, “desktop 2”…"
+msgstr "搜尋：標題、應用程式、「桌面 2」…"
+
+#: barretta@andreafontana.it/extension.js:2129
+msgid "No windows found"
+msgstr "找不到視窗"
+
+#: barretta@andreafontana.it/extension.js:2134
+msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
+msgstr "Enter：前往視窗 · Ctrl+Enter：保持列的篩選"
+
+#: barretta@andreafontana.it/extension.js:2215
+#, javascript-format
+msgid "Desktop %d"
+msgstr "桌面 %d"
+
+#: barretta@andreafontana.it/extension.js:2244
+msgid "type to narrow down"
+msgstr "輸入以縮小範圍"
+
+#: barretta@andreafontana.it/extension.js:2436
+msgid "A light app bar: zero calories for your CPU."
+msgstr "輕量應用程式列：給你的 CPU 零卡路里。"
+
+#: barretta@andreafontana.it/extension.js:2437
+#, javascript-format
+msgid "Version %s"
+msgstr "版本 %s"
+
+#: barretta@andreafontana.it/extension.js:2442
+#: barretta@andreafontana.it/extension.js:2449
+msgid "Bar size"
+msgstr "列的大小"
+
+#: barretta@andreafontana.it/extension.js:2473
+msgid "Small"
+msgstr "小"
+
+#: barretta@andreafontana.it/extension.js:2474
+msgid "Large"
+msgstr "大"
+
+#: barretta@andreafontana.it/extension.js:2492
+msgid "Position"
+msgstr "位置"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Left"
+msgstr "左側"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Bottom"
+msgstr "底部"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Right"
+msgstr "右側"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Off"
+msgstr "關閉"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Drawer"
+msgstr "抽屜"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Visible"
+msgstr "可見"
+
+#: barretta@andreafontana.it/extension.js:2551
+msgid "Visible icons"
+msgstr "可見圖示"
+
+#: barretta@andreafontana.it/extension.js:2559
+msgid "All"
+msgstr "全部"
+
+#: barretta@andreafontana.it/extension.js:2568
+msgid "Hide automatically"
+msgstr "自動隱藏"

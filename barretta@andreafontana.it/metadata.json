@@ -1,0 +1,12 @@
+{
+  "uuid": "barretta@andreafontana.it",
+  "name": "Barretta",
+  "description": "A light app bar for GNOME: zero calories for your CPU. Windows, notifications and desktops at a glance.",
+  "shell-version": [
+    "50",
+    "51"
+  ],
+  "settings-schema": "org.gnome.shell.extensions.barretta",
+  "version": 1,
+  "gettext-domain": "barretta"
+}

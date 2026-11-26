@@ -1,0 +1,164 @@
+# Barretta translation
+msgid ""
+msgstr ""
+"Project-Id-Version: barretta 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-26 01:46+0100\n"
+"PO-Revision-Date: 2026-11-26 00:00+0100\n"
+"Last-Translator: Barretta\n"
+"Language-Team: ar\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: barretta@andreafontana.it/extension.js:172
+#, javascript-format
+msgid "screen %d"
+msgstr "شاشة %d"
+
+#: barretta@andreafontana.it/extension.js:177
+#, javascript-format
+msgid "desktop %d"
+msgstr "سطح المكتب %d"
+
+#: barretta@andreafontana.it/extension.js:274
+#, javascript-format
+msgid "On screen %d"
+msgstr "على الشاشة %d"
+
+#: barretta@andreafontana.it/extension.js:276
+#, javascript-format
+msgid "On desktop %d"
+msgstr "على سطح المكتب %d"
+
+#: barretta@andreafontana.it/extension.js:276
+msgid "Elsewhere"
+msgstr "في مكان آخر"
+
+#: barretta@andreafontana.it/extension.js:422
+#: barretta@andreafontana.it/extension.js:940
+msgid "On this screen"
+msgstr "على هذه الشاشة"
+
+#: barretta@andreafontana.it/extension.js:951
+msgid "New window here"
+msgstr "نافذة جديدة هنا"
+
+#: barretta@andreafontana.it/extension.js:966
+msgid "Recent files"
+msgstr "الملفات الأخيرة"
+
+#: barretta@andreafontana.it/extension.js:979
+msgid "Unpin"
+msgstr "إلغاء التثبيت"
+
+#: barretta@andreafontana.it/extension.js:981
+msgid "Pin"
+msgstr "تثبيت"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Stop keeping first"
+msgstr "التوقف عن الإبقاء أولًا"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Keep first"
+msgstr "الإبقاء أولًا"
+
+#: barretta@andreafontana.it/extension.js:988
+msgid "Quit"
+msgstr "إنهاء"
+
+#: barretta@andreafontana.it/extension.js:1214
+#: barretta@andreafontana.it/extension.js:2212
+#, javascript-format
+msgid "Screen %d"
+msgstr "الشاشة %d"
+
+#: barretta@andreafontana.it/extension.js:1338
+#: barretta@andreafontana.it/extension.js:2515
+msgid "System tray"
+msgstr "علبة النظام"
+
+#: barretta@andreafontana.it/extension.js:2117
+msgid "Search: title, app, “desktop 2”…"
+msgstr "بحث: العنوان، التطبيق، «سطح المكتب 2»…"
+
+#: barretta@andreafontana.it/extension.js:2129
+msgid "No windows found"
+msgstr "لم يُعثر على نوافذ"
+
+#: barretta@andreafontana.it/extension.js:2134
+msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
+msgstr "Enter: الانتقال إلى النافذة · Ctrl+Enter: إبقاء الشريط مُرشَّحًا"
+
+#: barretta@andreafontana.it/extension.js:2215
+#, javascript-format
+msgid "Desktop %d"
+msgstr "سطح المكتب %d"
+
+#: barretta@andreafontana.it/extension.js:2244
+msgid "type to narrow down"
+msgstr "اكتب للتضييق"
+
+#: barretta@andreafontana.it/extension.js:2436
+msgid "A light app bar: zero calories for your CPU."
+msgstr "شريط تطبيقات خفيف: صفر سعرات حرارية لمعالجك."
+
+#: barretta@andreafontana.it/extension.js:2437
+#, javascript-format
+msgid "Version %s"
+msgstr "الإصدار %s"
+
+#: barretta@andreafontana.it/extension.js:2442
+#: barretta@andreafontana.it/extension.js:2449
+msgid "Bar size"
+msgstr "حجم الشريط"
+
+#: barretta@andreafontana.it/extension.js:2473
+msgid "Small"
+msgstr "صغير"
+
+#: barretta@andreafontana.it/extension.js:2474
+msgid "Large"
+msgstr "كبير"
+
+#: barretta@andreafontana.it/extension.js:2492
+msgid "Position"
+msgstr "الموضع"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Left"
+msgstr "يسار"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Bottom"
+msgstr "أسفل"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Right"
+msgstr "يمين"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Off"
+msgstr "إيقاف"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Drawer"
+msgstr "درج"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Visible"
+msgstr "ظاهرة"
+
+#: barretta@andreafontana.it/extension.js:2551
+msgid "Visible icons"
+msgstr "الأيقونات الظاهرة"
+
+#: barretta@andreafontana.it/extension.js:2559
+msgid "All"
+msgstr "الكل"
+
+#: barretta@andreafontana.it/extension.js:2568
+msgid "Hide automatically"
+msgstr "إخفاء تلقائي"

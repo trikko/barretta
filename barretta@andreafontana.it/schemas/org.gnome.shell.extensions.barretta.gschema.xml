@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <enum id="org.gnome.shell.extensions.barretta.side">
+    <value nick="left" value="0"/>
+    <value nick="right" value="1"/>
+    <value nick="bottom" value="2"/>
+  </enum>
+  <enum id="org.gnome.shell.extensions.barretta.tray">
+    <value nick="none" value="0"/>
+    <value nick="drawer" value="1"/>
+    <value nick="inline" value="2"/>
+  </enum>
+  <schema id="org.gnome.shell.extensions.barretta" path="/org/gnome/shell/extensions/barretta/">
+    <key name="side" enum="org.gnome.shell.extensions.barretta.side">
+      <default>'left'</default>
+      <summary>Screen edge</summary>
+    </key>
+    <key name="all-monitors" type="b">
+      <default>true</default>
+      <summary>One bar per monitor, each with its own windows</summary>
+    </key>
+    <key name="isolate-workspaces" type="b">
+      <default>true</default>
+      <summary>Show only the windows of the current desktop</summary>
+    </key>
+    <key name="open-only" type="b">
+      <default>false</default>
+      <summary>Show only open apps, without closed pinned ones</summary>
+    </key>
+    <key name="bar-size" type="i">
+      <range min="0" max="4"/>
+      <default>2</default>
+      <summary>Bar size (0 small … 4 large)</summary>
+    </key>
+    <key name="app-order" type="as">
+      <default>[]</default>
+      <summary>Icon order chosen by dragging (app ids)</summary>
+    </key>
+    <key name="tray" enum="org.gnome.shell.extensions.barretta.tray">
+      <default>'drawer'</default>
+      <summary>System tray: off, in a drawer, or visible in the bar</summary>
+    </key>
+    <key name="tray-max" type="i">
+      <range min="0" max="12"/>
+      <default>3</default>
+      <summary>Tray icons visible in the bar (0 = all); the others go in the drawer</summary>
+    </key>
+    <key name="autohide" type="b">
+      <default>false</default>
+      <summary>Hide the bar when a window covers it; bring it back from the screen edge</summary>
+    </key>
+    <key name="focus-shortcut" type="as">
+      <default><![CDATA[['<Super>b']]]></default>
+      <summary>Shortcut to move the keyboard focus to the bar</summary>
+    </key>
+    <key name="search-shortcut" type="as">
+      <default><![CDATA[['<Super>f']]]></default>
+      <summary>Shortcut to search open windows</summary>
+    </key>
+    <key name="open-only-shortcut" type="as">
+      <default><![CDATA[[]]]></default>
+      <summary>Shortcut to show or hide closed pinned apps</summary>
+    </key>
+  </schema>
+</schemalist>

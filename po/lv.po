@@ -1,0 +1,164 @@
+# Barretta translation
+msgid ""
+msgstr ""
+"Project-Id-Version: barretta 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-26 01:46+0100\n"
+"PO-Revision-Date: 2026-11-26 00:00+0100\n"
+"Last-Translator: Barretta\n"
+"Language-Team: lv\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: barretta@andreafontana.it/extension.js:172
+#, javascript-format
+msgid "screen %d"
+msgstr "ekrāns %d"
+
+#: barretta@andreafontana.it/extension.js:177
+#, javascript-format
+msgid "desktop %d"
+msgstr "darbvieta %d"
+
+#: barretta@andreafontana.it/extension.js:274
+#, javascript-format
+msgid "On screen %d"
+msgstr "Ekrānā %d"
+
+#: barretta@andreafontana.it/extension.js:276
+#, javascript-format
+msgid "On desktop %d"
+msgstr "Darbvietā %d"
+
+#: barretta@andreafontana.it/extension.js:276
+msgid "Elsewhere"
+msgstr "Citur"
+
+#: barretta@andreafontana.it/extension.js:422
+#: barretta@andreafontana.it/extension.js:940
+msgid "On this screen"
+msgstr "Šajā ekrānā"
+
+#: barretta@andreafontana.it/extension.js:951
+msgid "New window here"
+msgstr "Jauns logs šeit"
+
+#: barretta@andreafontana.it/extension.js:966
+msgid "Recent files"
+msgstr "Nesenās datnes"
+
+#: barretta@andreafontana.it/extension.js:979
+msgid "Unpin"
+msgstr "Atspraust"
+
+#: barretta@andreafontana.it/extension.js:981
+msgid "Pin"
+msgstr "Piespraust"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Stop keeping first"
+msgstr "Vairs neturēt pirmo"
+
+#: barretta@andreafontana.it/extension.js:986
+msgid "Keep first"
+msgstr "Turēt pirmo"
+
+#: barretta@andreafontana.it/extension.js:988
+msgid "Quit"
+msgstr "Iziet"
+
+#: barretta@andreafontana.it/extension.js:1214
+#: barretta@andreafontana.it/extension.js:2212
+#, javascript-format
+msgid "Screen %d"
+msgstr "Ekrāns %d"
+
+#: barretta@andreafontana.it/extension.js:1338
+#: barretta@andreafontana.it/extension.js:2515
+msgid "System tray"
+msgstr "Sistēmas tekne"
+
+#: barretta@andreafontana.it/extension.js:2117
+msgid "Search: title, app, “desktop 2”…"
+msgstr "Meklēt: virsraksts, lietotne, “darbvieta 2”…"
+
+#: barretta@andreafontana.it/extension.js:2129
+msgid "No windows found"
+msgstr "Logi nav atrasti"
+
+#: barretta@andreafontana.it/extension.js:2134
+msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
+msgstr "Enter: pāriet uz logu · Ctrl+Enter: paturēt joslu filtrētu"
+
+#: barretta@andreafontana.it/extension.js:2215
+#, javascript-format
+msgid "Desktop %d"
+msgstr "Darbvieta %d"
+
+#: barretta@andreafontana.it/extension.js:2244
+msgid "type to narrow down"
+msgstr "rakstiet, lai sašaurinātu"
+
+#: barretta@andreafontana.it/extension.js:2436
+msgid "A light app bar: zero calories for your CPU."
+msgstr "Viegla lietotņu josla: nulle kaloriju jūsu procesoram."
+
+#: barretta@andreafontana.it/extension.js:2437
+#, javascript-format
+msgid "Version %s"
+msgstr "Versija %s"
+
+#: barretta@andreafontana.it/extension.js:2442
+#: barretta@andreafontana.it/extension.js:2449
+msgid "Bar size"
+msgstr "Joslas izmērs"
+
+#: barretta@andreafontana.it/extension.js:2473
+msgid "Small"
+msgstr "Maza"
+
+#: barretta@andreafontana.it/extension.js:2474
+msgid "Large"
+msgstr "Liela"
+
+#: barretta@andreafontana.it/extension.js:2492
+msgid "Position"
+msgstr "Novietojums"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Left"
+msgstr "Pa kreisi"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Bottom"
+msgstr "Apakšā"
+
+#: barretta@andreafontana.it/extension.js:2495
+msgid "Right"
+msgstr "Pa labi"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Off"
+msgstr "Izslēgts"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Drawer"
+msgstr "Atvilktne"
+
+#: barretta@andreafontana.it/extension.js:2545
+msgid "Visible"
+msgstr "Redzamās"
+
+#: barretta@andreafontana.it/extension.js:2551
+msgid "Visible icons"
+msgstr "Redzamās ikonas"
+
+#: barretta@andreafontana.it/extension.js:2559
+msgid "All"
+msgstr "Visas"
+
+#: barretta@andreafontana.it/extension.js:2568
+msgid "Hide automatically"
+msgstr "Automātiski paslēpt"
