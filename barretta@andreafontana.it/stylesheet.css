@@ -99,11 +99,14 @@
 }
 .barra-preview-item {
   border-radius: 4px;
-  padding: 4px;
-  spacing: 4px;
+  padding: 0;
+  /* Sempre 1px di bordo: quando diventa d'accento non sposta niente. */
+  border: 1px solid transparent;
 }
+/* Al posto del padding della voce: lo spazio dove girano i trattini. */
+.barra-preview-content { margin: 6px; }
 .barra-preview-item:hover { background-color: rgba(255, 255, 255, 0.08); }
-.barra-preview-item.active { border: 1px solid -st-accent-color; }
+.barra-preview-item.active { border-color: -st-accent-color; }
 .barra-preview-title {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.87);
@@ -266,3 +269,6 @@
 
 /* File trascinato: conto finito, la piastrella lampeggia. */
 .barra-item.dnd-ready .barra-tile { background-color: -st-accent-color; }
+
+/* Conto alla rovescia sulle anteprime, mentre ci passa sopra un file. */
+.barra-countdown { color: -st-accent-color; }

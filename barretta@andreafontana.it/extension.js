@@ -71,6 +71,7 @@ const PROGRESS_LINE = 2.5;    // spessore dell'anello di avanzamento
 const PROGRESS_INSET = 3;     // px tra il bordo della piastrella e l'anello
 const DND_HOVER_DELAY = 500;         // ms d'attesa se l'app è aperta (un quarto di giro)
 const DND_HOVER_DELAY_CLOSED = 1000; // ms se va aperta (mezzo giro): aprirla costa di più
+const DND_LEAVE_GRACE = 300;   // ms fuori dall'icona (e dalle anteprime) prima di annullare
 const DND_WATCH_INTERVAL = 100; // ms: solo durante un trascinamento, si è ancora sopra l'icona?
 const DND_FLASH = 220;          // ms del lampo sulla piastrella a conto finito
 const DND_SEGMENT = 0.36;       // lunghezza di ognuno dei 4 tratti, in frazione del loro quarto
@@ -321,6 +322,84 @@ function activateApp(app, windows) {
 }
 
 // ---------------------------------------------------------------------------
+// Contorni a "pista": l'anello di avanzamento delle icone e il conto alla
+// rovescia del trascinamento, sulle icone e sulle anteprime.
+
+// Contorno arrotondato a distanza m dal bordo, con angoli di raggio r, che
+// parte dal centro del lato alto in senso orario. Restituisce la lunghezza.
+function roundedOutline(cr, w, h, m, r) {
+    cr.newPath();
+    cr.moveTo(w / 2, m);
+    cr.lineTo(w - m - r, m);
+    cr.arc(w - m - r, m + r, r, -Math.PI / 2, 0);
+    cr.lineTo(w - m, h - m - r);
+    cr.arc(w - m - r, h - m - r, r, 0, Math.PI / 2);
+    cr.lineTo(m + r, h - m);
+    cr.arc(m + r, h - m - r, r, Math.PI / 2, Math.PI);
+    cr.lineTo(m, m + r);
+    cr.arc(m + r, m + r, r, Math.PI, 3 * Math.PI / 2);
+    cr.lineTo(w / 2, m);
+    return 2 * (w + h - 4 * m) - 8 * r + 2 * Math.PI * r;
+}
+
+// Quattro tratti simmetrici sul contorno appena tracciato: con value da 0 a 1
+// fanno `turns` quarti di giro. È il segnale "file sopra, aspetta".
+function strokeCountdown(cr, length, value, turns, c) {
+    const period = length / 4;
+    const seg = period * DND_SEGMENT;
+    const start = value * period * turns - seg;
+    cr.setDash([seg, period - seg], ((-start % period) + period) % period);
+    cr.setSourceRGBA(c.red / 255, c.green / 255, c.blue / 255, 1);
+    cr.stroke();
+}
+
+// Conto alla rovescia su un'anteprima: un contorno disegnato sopra di lei.
+class CountdownRing {
+    constructor() {
+        this._value = null;
+        this._timeline = null;
+        this.actor = new St.DrawingArea({
+            style_class: 'barra-countdown',
+            x_expand: true,
+            y_expand: true,
+            visible: false,
+        });
+        this.actor.connect('repaint', area => {
+            const cr = area.get_context();
+            const [w, h] = area.get_surface_size();
+            const line = PROGRESS_LINE;
+            const length = roundedOutline(cr, w, h, 1 + line / 2, 4);
+            cr.setLineWidth(line);
+            cr.setLineCap(1);
+            const c = area.get_theme_node().get_foreground_color();
+            cr.setSourceRGBA(c.red / 255, c.green / 255, c.blue / 255, 0.22);
+            cr.strokePreserve();
+            strokeCountdown(cr, length, this._value ?? 0, 1, c);
+            cr.$dispose();
+        });
+    }
+
+    start(duration) {
+        this.stop();
+        this._value = 0;
+        this._timeline = new Clutter.Timeline({actor: this.actor, duration});
+        this._timeline.connect('new-frame', tl => {
+            this._value = tl.get_progress();
+            this.actor.queue_repaint();
+        });
+        this._timeline.start();
+        this.actor.show();
+    }
+
+    stop() {
+        this._timeline?.stop();
+        this._timeline = null;
+        this._value = null;
+        this.actor.hide();
+    }
+}
+
+// ---------------------------------------------------------------------------
 // Anteprime delle finestre: una sola per tutta l'estensione.
 
 class Preview {
@@ -383,9 +462,27 @@ class Preview {
         });
     }
 
+    // Un file trascinato sopra un'app con più finestre: le anteprime subito,
+    // senza attesa. Restano finché il file è sopra l'icona o sopra di loro.
+    showForDrag(item) {
+        this._cancelShow();
+        this._cancelHide();
+        this._show(item);
+        this.dragItem = this.actor.visible ? item : null;
+    }
+
+    // La finestra appena portata davanti: bordo d'accento solo su di lei.
+    markActive(entry) {
+        for (const child of this.actor.get_children()) {
+            if (child._window)
+                setClass(child, 'active', child === entry);
+        }
+    }
+
     hide() {
         this._cancelShow();
         this._cancelHide();
+        this.dragItem = null;
         this._item = null;
         this._pendingItem = null;
         this.actor.hide();
@@ -441,7 +538,12 @@ class Preview {
     }
 
     _makeEntry(window, active) {
-        const box = new St.BoxLayout({orientation: Clutter.Orientation.VERTICAL});
+        // Il margine intorno lascia posto ai trattini del trascinamento, che
+        // girano attorno all'anteprima senza coprirla.
+        const box = new St.BoxLayout({
+            style_class: 'barra-preview-content',
+            orientation: Clutter.Orientation.VERTICAL,
+        });
         const source = window.get_compositor_private();
         if (source) {
             const [w, h] = source.get_size();
@@ -469,8 +571,10 @@ class Preview {
             opacity: 0,
         });
         close.connect('clicked', () => this._closeWindow(window));
+        const ring = new CountdownRing();
         const stack = new St.Widget({layout_manager: new Clutter.BinLayout()});
         stack.add_child(box);
+        stack.add_child(ring.actor);
         stack.add_child(close);
 
         const button = new St.Button({
@@ -480,6 +584,20 @@ class Preview {
             track_hover: true,
         });
         setClass(button, 'active', active);
+        // Un file trascinato sopra: dopo il conto, questa finestra davanti.
+        button._window = window;
+        button._ring = ring;
+        button.connect('destroy', () => {
+            button._gone = true;
+            ring.stop();
+        });
+        button._delegate = {
+            handleDragOver: source => {
+                if (source === Main.xdndHandler)
+                    this._owner.dndPreviewHover(button);
+                return DND.DragMotionResult.CONTINUE;
+            },
+        };
         button.connect('notify::hover', () => {
             close.opacity = button.hover ? 255 : 0;
         });
@@ -690,21 +808,8 @@ class AppItem {
             // Dentro la piastrella, staccato dal bordo di qualche pixel.
             const m = PROGRESS_INSET * k + line / 2;
             const r = 3 * k;
-            // Contorno arrotondato che parte dal centro del lato alto.
-            const path = () => {
-                cr.newPath();
-                cr.moveTo(w / 2, m);
-                cr.lineTo(w - m - r, m);
-                cr.arc(w - m - r, m + r, r, -Math.PI / 2, 0);
-                cr.lineTo(w - m, h - m - r);
-                cr.arc(w - m - r, h - m - r, r, 0, Math.PI / 2);
-                cr.lineTo(m + r, h - m);
-                cr.arc(m + r, h - m - r, r, Math.PI / 2, Math.PI);
-                cr.lineTo(m, m + r);
-                cr.arc(m + r, m + r, r, Math.PI, 3 * Math.PI / 2);
-                cr.lineTo(w / 2, m);
-            };
-            const length = 2 * (w + h - 4 * m) - 8 * r + 2 * Math.PI * r;
+            const path = () => roundedOutline(cr, w, h, m, r);
+            const length = path();
             cr.setLineWidth(line);
             cr.setLineCap(1);   // estremi arrotondati
             const c = area.get_theme_node().get_foreground_color();
@@ -716,13 +821,8 @@ class AppItem {
             // quarto di giro nel tempo d'attesa, per non confonderlo con un
             // download (che riempie l'anello).
             if (this._dndValue != null) {
-                const period = length / 4;
-                const seg = period * DND_SEGMENT;
-                const start = this._dndValue * period * this._dndTurns - seg;
                 path();
-                cr.setDash([seg, period - seg], ((-start % period) + period) % period);
-                cr.setSourceRGBA(c.red / 255, c.green / 255, c.blue / 255, 1);
-                cr.stroke();
+                strokeCountdown(cr, length, this._dndValue, this._dndTurns, c);
                 cr.$dispose();
                 return;
             }
@@ -3074,44 +3174,90 @@ export default class BarraExtension extends Extension {
             return;
         this._cancelDndHover();
         this._dndHoverItem = item;
+        const count = item.windows.length + item.elsewhere.length;
+        // Più finestre: le anteprime subito, e il conto si fa su quella scelta.
+        if (count > 1) {
+            this.preview.showForDrag(item);
+            this._dndWatch(() => this._pointerOver(item.actor) ||
+                (this.preview.dragItem === item && this._pointerOver(this.preview.actor)));
+            return;
+        }
         // Un'app chiusa va aperta: si aspetta di più, per non aprirla per sbaglio.
-        const delay = item.windows.length + item.elsewhere.length > 0 ? DND_HOVER_DELAY : DND_HOVER_DELAY_CLOSED;
+        const delay = count > 0 ? DND_HOVER_DELAY : DND_HOVER_DELAY_CLOSED;
         item.setDndCountdown(delay);
-        const over = () => {
-            const [px, py] = global.get_pointer();
-            const under = global.stage.get_actor_at_pos(Clutter.PickMode.REACTIVE, px, py);
-            return !!under && (under === item.actor || item.actor.contains(under));
-        };
-        this._dndWatchId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, DND_WATCH_INTERVAL, () => {
-            if (over())
-                return GLib.SOURCE_CONTINUE;
-            this._dndWatchId = 0;
-            this._cancelDndHover();
-            return GLib.SOURCE_REMOVE;
-        });
+        const over = () => this._pointerOver(item.actor);
+        this._dndWatch(over);
         this._dndHoverId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, delay, () => {
             this._dndHoverId = 0;
             if (!over()) {
                 this._cancelDndHover();
                 return GLib.SOURCE_REMOVE;
             }
-            const windows = item.windows.length > 0 ? item.windows : item.elsewhere;
             item.flash();
-            if (windows.length > 0)
-                activate(mostRecent(windows));
+            if (count > 0)
+                activate(item.windows[0] ?? item.elsewhere[0]);
             else
                 item.app.activate();
             // Resta "fatto" finché il file non esce: niente nuovo conto.
-            if (this._dndWatchId)
-                GLib.source_remove(this._dndWatchId);
-            this._dndWatchId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, DND_WATCH_INTERVAL, () => {
-                if (over())
-                    return GLib.SOURCE_CONTINUE;
-                this._dndWatchId = 0;
-                this._cancelDndHover();
-                return GLib.SOURCE_REMOVE;
-            });
             item.setDndCountdown(0);
+            return GLib.SOURCE_REMOVE;
+        });
+    }
+
+    // Il file passa sopra un'anteprima: mezzo secondo, poi quella finestra
+    // davanti. Le anteprime restano aperte finché il file non esce, così se
+    // era quella sbagliata se ne sceglie un'altra.
+    dndPreviewHover(entry) {
+        if (!this._dndHoverItem || this._dndEntry === entry || this._dndChosen === entry)
+            return;
+        this._cancelDndEntry();
+        this._dndEntry = entry;
+        entry._ring.start(DND_HOVER_DELAY);
+        this._dndEntryId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, DND_HOVER_DELAY, () => {
+            this._dndEntryId = 0;
+            const window = entry._window;
+            const chosen = !entry._gone && this._pointerOver(entry);
+            this._cancelDndEntry();
+            if (chosen && alive(window)) {
+                activate(window);
+                this._dndChosen = entry;
+                this.preview.markActive(entry);
+            }
+            return GLib.SOURCE_REMOVE;
+        });
+    }
+
+    _cancelDndEntry() {
+        if (this._dndEntryId)
+            GLib.source_remove(this._dndEntryId);
+        this._dndEntryId = 0;
+        // L'anteprima può essere già stata chiusa (e la voce distrutta).
+        if (this._dndEntry && !this._dndEntry._gone)
+            this._dndEntry._ring.stop();
+        this._dndEntry = null;
+    }
+
+    _pointerOver(actor) {
+        if (!actor)
+            return false;
+        const [px, py] = global.get_pointer();
+        const under = global.stage.get_actor_at_pos(Clutter.PickMode.REACTIVE, px, py);
+        return !!under && (under === actor || actor.contains(under));
+    }
+
+    // Solo durante un trascinamento: se il file resta fuori da dove serve per
+    // più di DND_LEAVE_GRACE (non per i pochi pixel tra icona e anteprime), si
+    // annulla tutto.
+    _dndWatch(stillOver) {
+        if (this._dndWatchId)
+            GLib.source_remove(this._dndWatchId);
+        let outside = 0;
+        this._dndWatchId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, DND_WATCH_INTERVAL, () => {
+            outside = stillOver() ? 0 : outside + DND_WATCH_INTERVAL;
+            if (outside <= DND_LEAVE_GRACE)
+                return GLib.SOURCE_CONTINUE;
+            this._dndWatchId = 0;
+            this._cancelDndHover();
             return GLib.SOURCE_REMOVE;
         });
     }
@@ -3128,6 +3274,10 @@ export default class BarraExtension extends Extension {
         if (this._dndWatchId)
             GLib.source_remove(this._dndWatchId);
         this._dndWatchId = 0;
+        this._cancelDndEntry();
+        this._dndChosen = null;
+        if (this._dndHoverItem && this.preview?.dragItem === this._dndHoverItem)
+            this.preview.hide();
         this._dndHoverItem?.setDndCountdown(0);
         this._dndHoverItem = null;
     }

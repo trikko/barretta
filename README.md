@@ -52,6 +52,12 @@ comes to the front and you drop the file in it. If the app is closed, the wait i
 
 ![Dragging a file onto Text Editor](docs/drag-and-drop.gif)
 
+If the app has more than one window, its previews open right away: hold the file on the one you want
+and that window comes to the front. The previews stay open until the file leaves them, so you can still
+pick another one.
+
+![Choosing one of two windows while dragging a file](docs/drag-to-window.gif)
+
 On Wayland the shell can't receive the dragged file itself, so the drop happens in the window, not on
 the icon.
 
