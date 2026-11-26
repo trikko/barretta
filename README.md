@@ -7,7 +7,8 @@ Barretta plays in the same league as [Dash to Dock](https://github.com/micheleg/
 extensions can be tuned in hundreds of ways; Barretta cuts the customization down to the few choices
 that matter (size, position, tray, autohide) and spends the effort on a handful of features I find
 handy every day instead: finding a window by typing, seeing at a glance what is open on which screen,
-dropping a file on an app that isn't in front.
+dropping a file on an app that isn't in front. It also brings back the system tray (AppIndicator icons),
+which GNOME doesn't have on its own.
 
 It stays out of the way: while you aren't using it, it runs no timers and does no work.
 
@@ -35,6 +36,14 @@ progress as a ring inside the tile.
 
 ![Badges and progress ring](docs/notifications.gif)
 
+### System tray (AppIndicator)
+
+The icons apps put in the tray (StatusNotifierItem/AppIndicator, the kind sync clients, chat and VPN
+apps use) live at the bottom of the bar, with their menus. Keep them in a drawer, show some or all of
+them in the bar, or turn the tray off: no separate AppIndicator extension needed.
+
+![Tray drawer, an app's menu, and icons shown in the bar](docs/system-tray.gif)
+
 ### Drag a file onto an app
 
 Drag a file over an icon and hold it there: four marks turn around the tile, then the app's window
@@ -60,7 +69,6 @@ and desktop; <kbd>Shift</kbd>+click brings a window from another screen to this 
 - Drag icons to reorder them. The order is also the order of <kbd>Super</kbd>+<kbd>1</kbd>…<kbd>9</kbd>.
 - Keep an app first in the bar for the session, without pinning it.
 - Right-click menu with the app's windows, recent files, actions, pin/unpin and quit.
-- System tray (StatusNotifierItem): none, in a drawer, or inline with a chosen number of icons.
 - Autohide (off by default).
 - Translated into 39 languages; English by default.
 
@@ -107,6 +115,8 @@ gnome-extensions enable barretta@andreafontana.it
 ```
 
 If you use Dash to Dock or Dash to Panel, disable it first: two bars on the same edge don't get along.
+The same goes for the AppIndicator extension: disable it, or set Barretta's tray to Off, so the icons
+don't end up in two places.
 
 To update, pull and run `./install.sh` again, then log out and back in.
 
