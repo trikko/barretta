@@ -1096,15 +1096,19 @@ class Bar {
             x_expand: true,
             y_expand: true,
         });
+        // Alto come lente e stella: la griglia ha due file di puntini invece
+        // di tre, per lasciare posto ai trattini sotto.
+        const appsWidth = this.horizontal ? TOOL_HEIGHT : ITEM;
+        const appsHeight = this.horizontal ? ITEM : TOOL_HEIGHT;
         const appsContent = new St.Widget({
             layout_manager: new Clutter.BinLayout(),
-            width: ITEM,
-            height: ITEM,
+            width: appsWidth,
+            height: appsHeight,
             x_expand: false,
             y_expand: false,
         });
         appsContent.add_child(new St.Icon({
-            icon_name: 'view-app-grid-symbolic',
+            gicon: new Gio.FileIcon({file: ext.dir.get_child('icons').get_child('barra-apps-symbolic.svg')}),
             icon_size: 20,
             style_class: 'barra-apps-icon',
             x_align: Clutter.ActorAlign.CENTER,
@@ -1116,8 +1120,8 @@ class Bar {
             child: appsContent,
             x_align: Clutter.ActorAlign.CENTER,
             y_align: Clutter.ActorAlign.CENTER,
-            width: ITEM,
-            height: ITEM,
+            width: appsWidth,
+            height: appsHeight,
             x_expand: false,
             y_expand: false,
         });
@@ -1130,9 +1134,6 @@ class Bar {
             else
                 Main.overview.showApps();
         });
-        this.actor.add_child(this._appsButton);
-        this.actor.add_child(this._makeSep());
-
         // App tenute in cima (o all'inizio, in basso): fuori dalla lista
         // scorrevole, sempre visibili.
         this._top = new St.BoxLayout({
@@ -1184,14 +1185,10 @@ class Bar {
             y_align: Clutter.ActorAlign.CENTER,
             visible: false,
         });
-        this._traySep = this._makeSep();
-        this._traySep.visible = false;
-        this.actor.add_child(this._traySep);
-        this.actor.add_child(this._trayBox);
-
-        // In fondo (o alla fine, in basso): ricerca e stella, con lo stesso
-        // stile del pulsante app.
+        // In fondo (o alla fine, in basso), dopo un solo separatore: area di
+        // sistema, ricerca, stella e griglia delle app, tutti della stessa misura.
         this.actor.add_child(this._makeSep());
+        this.actor.add_child(this._trayBox);
         const tool = (icon, action) => {
             const button = new St.Button({
                 style_class: 'barra-item barra-apps barra-tool',
@@ -1216,6 +1213,8 @@ class Bar {
         this._searchIcon = this._searchButton.child;
         this._filterGicon = new Gio.FileIcon({file: ext.dir.get_child('icons').get_child('barra-filter-symbolic.svg')});
         this._starButton = tool('starred-symbolic', () => ext.toggleOpenOnly());
+        // Ultimo, nell'angolo: la griglia delle app, come nella dash di GNOME.
+        this.actor.add_child(this._appsButton);
 
         const adj = this._adj;
         adj.connect('changed', () => this._updateArrows());
@@ -1328,7 +1327,6 @@ class Bar {
         this._trayKey = key;
         this._trayBox.destroy_all_children();
         this._trayBox.visible = show;
-        this._traySep.visible = show;
         if (!show)
             return;
         // "Visibili": le prime N (o tutte) nella barra, le altre nel cassetto.
