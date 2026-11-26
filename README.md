@@ -125,6 +125,16 @@ To update, pull and run `./install.sh` again, then log out and back in.
 The sources are in `po/`. After editing a `.po` file, `./compila-traduzioni.sh` updates the template
 and compiles the catalogs into the extension.
 
+## Feedback & support
+
+Using Barretta? I'd love to hear how it works for you, or what's missing: open an
+[issue](https://github.com/trikko/barretta/issues), or write to me: the address is just **oss**, at
+the domain of [my website](https://andreafontana.it).
+
+Barretta is built in my spare time. If it's useful to you or your company,
+consider [sponsoring me on GitHub](https://github.com/sponsors/trikko)
+or [buying me a beer on PayPal](https://paypal.me/andreafontana) ❤️
+
 ## License
 
 [GPL-3.0-or-later](LICENSE).
