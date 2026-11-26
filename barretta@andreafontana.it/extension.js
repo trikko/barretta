@@ -1003,10 +1003,15 @@ class AppItem {
         if (this.windows.length + this.elsewhere.length > 0)
             menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
-        if (app.can_open_new_window())
+        const newWindow = app.can_open_new_window();
+        if (newWindow)
             menu.addAction(_('New window here'), () => app.open_new_window(-1));
         const appInfo = app.get_app_info();
         for (const action of appInfo?.list_actions() ?? []) {
+            // GNOME apre la nuova finestra proprio con l'azione "new-window"
+            // dell'app: sarebbe un doppione della voce qui sopra.
+            if (newWindow && action === 'new-window')
+                continue;
             menu.addAction(appInfo.get_action_name(action),
                 (event) => app.launch_action(action, event?.get_time?.() ?? 0, -1));
         }
