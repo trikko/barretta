@@ -71,7 +71,8 @@ and desktop; <kbd>Shift</kbd>+click brings a window from another screen to this 
 
 ### And also
 
-- Window previews on hover; close a window from its preview with × or a middle click.
+- Window previews on hover: click one to bring that window forward (they stay open, so you can switch
+  again), close it with × or a middle click.
 - Drag icons to reorder them. The order is also the order of <kbd>Super</kbd>+<kbd>1</kbd>…<kbd>9</kbd>.
 - Keep an app first in the bar for the session, without pinning it.
 - Right-click menu with the app's windows, recent files, actions, pin/unpin and quit.

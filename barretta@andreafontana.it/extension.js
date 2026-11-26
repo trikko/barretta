@@ -607,8 +607,10 @@ class Preview {
                 this._closeWindow(window);
                 return;
             }
+            // Le anteprime restano aperte finché il mouse non esce: se era la
+            // finestra sbagliata, se ne sceglie subito un'altra.
             activate(window);
-            this.hide();
+            this.markActive(button);
         });
         return button;
     }
