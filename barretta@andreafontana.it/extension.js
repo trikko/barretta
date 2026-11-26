@@ -66,9 +66,11 @@ const TRAY_ICON = 16;
 const TRAY_MAX_CHOICES = 6;    // nella finestrella: 1…6 oppure tutte
 const PROGRESS_LINE = 2.5;    // spessore dell'anello di avanzamento
 const PROGRESS_INSET = 3;     // px tra il bordo della piastrella e l'anello
-const DND_HOVER_DELAY = 500;
+const DND_HOVER_DELAY = 500;         // ms d'attesa se l'app è aperta (un quarto di giro)
+const DND_HOVER_DELAY_CLOSED = 1000; // ms se va aperta (mezzo giro): aprirla costa di più
 const DND_WATCH_INTERVAL = 100; // ms: solo durante un trascinamento, si è ancora sopra l'icona?
 const DND_FLASH = 220;          // ms del lampo sulla piastrella a conto finito
+const DND_SEGMENT = 0.36;       // lunghezza di ognuno dei 4 tratti, in frazione del loro quarto
 const SPARE_MAX = 40;           // icone staccate tenute da parte al massimo
 const EDGE_SIZE = 2;            // px della striscia sul bordo che fa rientrare la barra nascosta
 const AUTOHIDE_DELAY = 400;     // ms dopo che il mouse esce, prima di nascondere
@@ -702,13 +704,27 @@ class AppItem {
             const length = 2 * (w + h - 4 * m) - 8 * r + 2 * Math.PI * r;
             cr.setLineWidth(line);
             cr.setLineCap(1);   // estremi arrotondati
-            // Traccia: tutto il contorno, appena accennato.
             const c = area.get_theme_node().get_foreground_color();
+            // Traccia: tutto il contorno, appena accennato.
             path();
             cr.setSourceRGBA(c.red / 255, c.green / 255, c.blue / 255, 0.22);
             cr.stroke();
+            // File trascinato sopra: quattro tratti simmetrici che fanno un
+            // quarto di giro nel tempo d'attesa, per non confonderlo con un
+            // download (che riempie l'anello).
+            if (this._dndValue != null) {
+                const period = length / 4;
+                const seg = period * DND_SEGMENT;
+                const start = this._dndValue * period * this._dndTurns - seg;
+                path();
+                cr.setDash([seg, period - seg], ((-start % period) + period) % period);
+                cr.setSourceRGBA(c.red / 255, c.green / 255, c.blue / 255, 1);
+                cr.stroke();
+                cr.$dispose();
+                return;
+            }
             // Avanzamento: il colore d'accento (bianco sull'app attiva).
-            const done = Math.max(0, Math.min(1, this._dndValue ?? this._progressValue ?? 0)) * length;
+            const done = Math.max(0, Math.min(1, this._progressValue ?? 0)) * length;
             if (done > 0) {
                 path();
                 cr.setDash([done, length], 0);
@@ -859,14 +875,17 @@ class AppItem {
     }
 
     // Conto alla rovescia mentre un file trascinato resta sopra l'icona:
-    // l'anello si riempie in DND_HOVER_DELAY ms. null lo toglie.
-    setDndCountdown(on) {
+    // quattro tratti girano per `duration` ms, un quarto di giro ogni
+    // DND_HOVER_DELAY. 0 li toglie.
+    setDndCountdown(duration) {
+        const on = duration > 0;
         this._dndTimeline?.stop();
         this._dndTimeline = null;
         this._dndValue = null;
         if (on) {
             this._dndValue = 0;
-            this._dndTimeline = new Clutter.Timeline({actor: this._progress, duration: DND_HOVER_DELAY});
+            this._dndTurns = duration / DND_HOVER_DELAY;
+            this._dndTimeline = new Clutter.Timeline({actor: this._progress, duration});
             this._dndTimeline.connect('new-frame', tl => {
                 this._dndValue = tl.get_progress();
                 this._progress.queue_repaint();
@@ -3039,8 +3058,9 @@ export default class BarraExtension extends Extension {
     }
 
     // ---- file trascinati da un'altra app ----
-    // Un file trascinato da un'altra app si ferma sopra un'icona: l'anello si
-    // riempie in mezzo secondo; alla fine la piastrella lampeggia e la
+    // Un file trascinato da un'altra app si ferma sopra un'icona: quattro
+    // tratti girano per mezzo secondo (un secondo se l'app è chiusa e va
+    // aperta); alla fine la piastrella lampeggia e la
     // finestra dell'app viene in primo piano (o l'app si apre, se è chiusa),
     // così il file si lascia lì. Se il file se ne va prima, si annulla.
     dndHover(item) {
@@ -3048,7 +3068,9 @@ export default class BarraExtension extends Extension {
             return;
         this._cancelDndHover();
         this._dndHoverItem = item;
-        item.setDndCountdown(true);
+        // Un'app chiusa va aperta: si aspetta di più, per non aprirla per sbaglio.
+        const delay = item.windows.length + item.elsewhere.length > 0 ? DND_HOVER_DELAY : DND_HOVER_DELAY_CLOSED;
+        item.setDndCountdown(delay);
         const over = () => {
             const [px, py] = global.get_pointer();
             const under = global.stage.get_actor_at_pos(Clutter.PickMode.REACTIVE, px, py);
@@ -3061,7 +3083,7 @@ export default class BarraExtension extends Extension {
             this._cancelDndHover();
             return GLib.SOURCE_REMOVE;
         });
-        this._dndHoverId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, DND_HOVER_DELAY, () => {
+        this._dndHoverId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, delay, () => {
             this._dndHoverId = 0;
             if (!over()) {
                 this._cancelDndHover();
@@ -3083,7 +3105,7 @@ export default class BarraExtension extends Extension {
                 this._cancelDndHover();
                 return GLib.SOURCE_REMOVE;
             });
-            item.setDndCountdown(false);
+            item.setDndCountdown(0);
             return GLib.SOURCE_REMOVE;
         });
     }
@@ -3100,7 +3122,7 @@ export default class BarraExtension extends Extension {
         if (this._dndWatchId)
             GLib.source_remove(this._dndWatchId);
         this._dndWatchId = 0;
-        this._dndHoverItem?.setDndCountdown(false);
+        this._dndHoverItem?.setDndCountdown(0);
         this._dndHoverItem = null;
     }
 
