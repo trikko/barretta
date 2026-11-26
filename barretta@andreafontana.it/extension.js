@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Andrea Fontana
+//
 // Barra: barra delle applicazioni verticale per GNOME Shell 50/51.
 //
 // Regole di progetto:

@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Andrea Fontana
+//
 // Area di sistema per Barretta: le icone che le app mettono "nel vassoio"
 // (Dropbox, Discord, Steam, Nextcloud…), con il protocollo StatusNotifierItem
 // (AppIndicator) e i loro menu (DBusMenu).

@@ -3,3 +3,5 @@ prova-barretta.sh
 guarda-barretta.sh
 # Mockup e anteprime
 *.png
+# Pacchetto per extensions.gnome.org (./pack.sh)
+*.shell-extension.zip

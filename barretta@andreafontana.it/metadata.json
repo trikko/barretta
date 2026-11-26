@@ -2,6 +2,7 @@
   "uuid": "barretta@andreafontana.it",
   "name": "Barretta",
   "description": "A light app bar for GNOME: zero calories for your CPU. Windows, notifications and desktops at a glance.",
+  "url": "https://github.com/trikko/barretta",
   "shell-version": [
     "50",
     "51"

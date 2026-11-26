@@ -114,3 +114,7 @@ To update, pull and run `./install.sh` again, then log out and back in.
 
 The sources are in `po/`. After editing a `.po` file, `./compila-traduzioni.sh` updates the template
 and compiles the catalogs into the extension.
+
+## License
+
+[GPL-3.0-or-later](LICENSE).
