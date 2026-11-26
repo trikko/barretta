@@ -86,6 +86,7 @@ const ARROW_REPEAT_DELAY = 300;
 const ARROW_REPEAT = 90;
 const PREVIEW_DELAY = 400;
 const PREVIEW_HIDE_DELAY = 250;
+const PREVIEW_STAY_DISTANCE = 60;   // px: dopo una chiusura, l'elenco resta aperto finché il mouse è più vicino
 const WS_SWITCH_INTERVAL = 250; // ms minimi tra due cambi di spazio di lavoro
 const PREVIEW_SUPPRESS = 400;  // ms senza anteprime dopo uno scorrimento
 const PREVIEW_W = 160;
@@ -548,7 +549,7 @@ class Preview {
 
     scheduleHide() {
         this._cancelShow();
-        if (!this.actor.visible || this._hideId)
+        if (!this.actor.visible || this._hideId || this._stayId)
             return;
         this._hideId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, PREVIEW_HIDE_DELAY, () => {
             this._hideId = 0;
@@ -577,6 +578,7 @@ class Preview {
     hide() {
         this._cancelShow();
         this._cancelHide();
+        this._endStayOpen();
         this.dragItem = null;
         this._item = null;
         this._pendingItem = null;
@@ -604,8 +606,8 @@ class Preview {
 
     _show(item) {
         this._item = item;
-        const here = item.windows.filter(w => alive(w) && !this._closing.has(w));
-        const elsewhere = item.elsewhere.filter(w => alive(w) && !this._closing.has(w));
+        const here = item.windows.filter(alive);
+        const elsewhere = item.elsewhere.filter(alive);
         if ((here.length === 0 && elsewhere.length === 0) || item.menuOpen) {
             this.hide();
             return;
@@ -620,12 +622,12 @@ class Preview {
             if (elsewhere.length > 0)
                 this._addLabel(_('On this screen'));
             for (const w of here)
-                this.actor.add_child(this._makeEntry(w, w === focus));
+                this.actor.add_child(Object.assign(this._makeEntry(w, w === focus), {_place: ''}));
         }
         for (const [place, windows] of groupByPlace(elsewhere, item.bar.monitorIndex)) {
             this._addLabel(place);
             for (const w of windows)
-                this.actor.add_child(this._makeEntry(w, false));
+                this.actor.add_child(Object.assign(this._makeEntry(w, false), {_place: place}));
         }
 
         this.actor.show();
@@ -729,8 +731,8 @@ class Preview {
         return button;
     }
 
-    // Chiude una finestra dall'anteprima. L'anteprima si aggiorna quando la
-    // finestra se ne va davvero (l'app può chiedere conferma).
+    // Chiude una finestra dall'anteprima. L'anteprima resta finché la finestra
+    // non se ne va davvero: l'app può chiedere conferma, e si può annullare.
     // Si collega al massimo una volta per finestra; il gestore si scollega da
     // solo quando la finestra se ne va, e tutti in destroy().
     _closeWindow(window) {
@@ -743,10 +745,79 @@ class Preview {
         window.connectObject('unmanaged', () => {
             window.disconnectObject(this);
             this._closing.delete(window);
-            const item = this._item;
-            if (item && this.actor.visible)
-                this._show(item);
+            this._windowGone(window);
         }, this);
+    }
+
+    // Una finestra dell'elenco se n'è andata: le altre anteprime scorrono a
+    // riempire il posto e l'elenco si stringe, restando ancorato dal lato
+    // lontano dall'icona (in alto con la barra di lato, in basso con quella
+    // sotto). L'elenco non si chiude anche se ora il mouse è rimasto fuori:
+    // si può chiudere subito un'altra finestra.
+    _windowGone(window) {
+        const item = this._item;
+        if (!item || !this.actor.visible)
+            return;
+        const entry = this.actor.get_children().find(c => c._window === window);
+        if (!entry)
+            return;
+        const [oldX, oldY] = this.actor.get_position();
+        const [, oldH] = this.actor.get_size();
+        entry.destroy();
+        // Titoli di gruppo rimasti senza finestre sotto.
+        const children = this.actor.get_children();
+        children.forEach((c, i) => {
+            if (!c._window && !children[i + 1]?._window)
+                c.destroy();
+        });
+        const left = this.actor.get_children().filter(c => c._window);
+        if (left.length === 0) {
+            this.hide();
+            return;
+        }
+        // Con un solo gruppo rimasto, il titolo non serve più.
+        if (left.every(c => c._place === left[0]._place))
+            this.actor.get_children().filter(c => !c._window).forEach(c => c.destroy());
+        const [, , , natH] = this.actor.get_preferred_size();
+        const y = this._owner.side === 'bottom' ? oldY + oldH - natH : oldY;
+        this.actor.set_position(oldX, Math.round(y));
+        this._stayOpen();
+    }
+
+    // Tiene aperto l'elenco finché il mouse non ci rientra (da lì valgono le
+    // solite regole) o non se ne allontana davvero.
+    _stayOpen() {
+        this._cancelHide();
+        if (this._stayId)
+            return;
+        this._stayId = global.stage.connect('captured-event', (_s, event) => {
+            if (event.type() !== Clutter.EventType.MOTION)
+                return Clutter.EVENT_PROPAGATE;
+            const d = this._pointerDistance();
+            if (d === 0)
+                this._endStayOpen();
+            else if (d > PREVIEW_STAY_DISTANCE) {
+                this._endStayOpen();
+                this.scheduleHide();
+            }
+            return Clutter.EVENT_PROPAGATE;
+        });
+    }
+
+    _endStayOpen() {
+        if (this._stayId)
+            global.stage.disconnect(this._stayId);
+        this._stayId = 0;
+    }
+
+    // Distanza del puntatore dal riquadro dell'elenco (0 se è sopra).
+    _pointerDistance() {
+        const [px, py] = global.get_pointer();
+        const [x, y] = this.actor.get_transformed_position();
+        const [w, h] = this.actor.get_transformed_size();
+        const dx = Math.max(x - px, 0, px - (x + w));
+        const dy = Math.max(y - py, 0, py - (y + h));
+        return Math.hypot(dx, dy);
     }
 
     _place(item) {
@@ -773,6 +844,7 @@ class Preview {
     destroy() {
         this._cancelShow();
         this._cancelHide();
+        this._endStayOpen();
         for (const window of this._closing)
             window.disconnectObject(this);
         this._closing.clear();
