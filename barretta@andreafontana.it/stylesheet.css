@@ -237,6 +237,16 @@
   color: #ffffff;
 }
 .barra-preview-close:hover { background-color: #e01b24; }
+/* Sempre in primo piano e su tutti i desktop, accanto alla ×: accesi in accento. */
+.barra-preview-toggle {
+  margin: 2px 0 2px 2px;
+  padding: 3px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+}
+.barra-preview-toggle:hover { background-color: rgba(0, 0, 0, 0.85); }
+.barra-preview-toggle:checked { background-color: -st-accent-color; color: -st-accent-fg-color; }
 
 /* Fuoco da tastiera (Super+B o Ctrl+Alt+Tab): contorno d'accento sulla piastrella. */
 .barra-item:focus .barra-tile { border: 2px solid -st-accent-color; }
@@ -272,3 +282,13 @@
 
 /* Conto alla rovescia sulle anteprime, mentre ci passa sopra un file. */
 .barra-countdown { color: -st-accent-color; }
+
+/* Menu dell'app: tasto per svuotare i file recenti, nel titolo della sezione. */
+.barra-recent-clear {
+  margin-left: 6px;
+  padding: 4px;
+  border-radius: 99px;
+  color: inherit;
+}
+.barra-recent-clear:hover { background-color: rgba(255, 255, 255, 0.1); }
+.barra-recent-clear:active { background-color: rgba(255, 255, 255, 0.16); }

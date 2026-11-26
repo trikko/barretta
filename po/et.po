@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: barretta 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 01:46+0100\n"
+"POT-Creation-Date: 2026-11-26 15:47+0100\n"
 "PO-Revision-Date: 2026-11-26 00:00+0100\n"
 "Last-Translator: Barretta\n"
 "Language-Team: et\n"
@@ -12,153 +12,177 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: barretta@andreafontana.it/extension.js:172
+#: barretta@andreafontana.it/extension.js:180
 #, javascript-format
 msgid "screen %d"
 msgstr "ekraan %d"
 
-#: barretta@andreafontana.it/extension.js:177
+#: barretta@andreafontana.it/extension.js:184
+#: barretta@andreafontana.it/extension.js:347
+#: barretta@andreafontana.it/extension.js:672
+#: barretta@andreafontana.it/extension.js:1224
+msgid "On all desktops"
+msgstr "Kõigil töölaudadel"
+
+#: barretta@andreafontana.it/extension.js:187
 #, javascript-format
 msgid "desktop %d"
 msgstr "töölaud %d"
 
-#: barretta@andreafontana.it/extension.js:274
+#: barretta@andreafontana.it/extension.js:345
 #, javascript-format
 msgid "On screen %d"
 msgstr "Ekraanil %d"
 
-#: barretta@andreafontana.it/extension.js:276
+#: barretta@andreafontana.it/extension.js:349
 #, javascript-format
 msgid "On desktop %d"
 msgstr "Töölaual %d"
 
-#: barretta@andreafontana.it/extension.js:276
+#: barretta@andreafontana.it/extension.js:349
 msgid "Elsewhere"
 msgstr "Mujal"
 
-#: barretta@andreafontana.it/extension.js:422
-#: barretta@andreafontana.it/extension.js:940
+#: barretta@andreafontana.it/extension.js:621
+#: barretta@andreafontana.it/extension.js:1212
 msgid "On this screen"
 msgstr "Sellel ekraanil"
 
-#: barretta@andreafontana.it/extension.js:951
+#: barretta@andreafontana.it/extension.js:669
+#: barretta@andreafontana.it/extension.js:1224
+msgid "Always on top"
+msgstr "Alati pealmine"
+
+#: barretta@andreafontana.it/extension.js:676
+msgid "Close"
+msgstr "Sulge"
+
+#: barretta@andreafontana.it/extension.js:1235
 msgid "New window here"
 msgstr "Uus aken siia"
 
-#: barretta@andreafontana.it/extension.js:966
+#: barretta@andreafontana.it/extension.js:1254
 msgid "Recent files"
 msgstr "Hiljutised failid"
 
-#: barretta@andreafontana.it/extension.js:979
+#: barretta@andreafontana.it/extension.js:1260
+msgid "Clear recent files"
+msgstr "Tühjenda hiljutised failid"
+
+#: barretta@andreafontana.it/extension.js:1270
 msgid "Unpin"
 msgstr "Vabasta"
 
-#: barretta@andreafontana.it/extension.js:981
+#: barretta@andreafontana.it/extension.js:1272
 msgid "Pin"
 msgstr "Kinnita"
 
-#: barretta@andreafontana.it/extension.js:986
+#: barretta@andreafontana.it/extension.js:1277
 msgid "Stop keeping first"
 msgstr "Ära hoia enam esimesena"
 
-#: barretta@andreafontana.it/extension.js:986
+#: barretta@andreafontana.it/extension.js:1277
 msgid "Keep first"
 msgstr "Hoia esimesena"
 
-#: barretta@andreafontana.it/extension.js:988
+#: barretta@andreafontana.it/extension.js:1279
 msgid "Quit"
 msgstr "Välju"
 
-#: barretta@andreafontana.it/extension.js:1214
-#: barretta@andreafontana.it/extension.js:2212
+#: barretta@andreafontana.it/extension.js:1509
+#: barretta@andreafontana.it/extension.js:2515
 #, javascript-format
 msgid "Screen %d"
 msgstr "Ekraan %d"
 
-#: barretta@andreafontana.it/extension.js:1338
-#: barretta@andreafontana.it/extension.js:2515
+#: barretta@andreafontana.it/extension.js:1632
+#: barretta@andreafontana.it/extension.js:2822
 msgid "System tray"
 msgstr "Süsteemisalv"
 
-#: barretta@andreafontana.it/extension.js:2117
+#: barretta@andreafontana.it/extension.js:2420
 msgid "Search: title, app, “desktop 2”…"
 msgstr "Otsing: pealkiri, rakendus, „töölaud 2“…"
 
-#: barretta@andreafontana.it/extension.js:2129
+#: barretta@andreafontana.it/extension.js:2432
 msgid "No windows found"
 msgstr "Aknaid ei leitud"
 
-#: barretta@andreafontana.it/extension.js:2134
+#: barretta@andreafontana.it/extension.js:2437
 msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
 msgstr "Enter: mine aknasse · Ctrl+Enter: jäta riba filtreerituks"
 
-#: barretta@andreafontana.it/extension.js:2215
+#: barretta@andreafontana.it/extension.js:2518
+msgid "All desktops"
+msgstr "Kõik töölauad"
+
+#: barretta@andreafontana.it/extension.js:2520
 #, javascript-format
 msgid "Desktop %d"
 msgstr "Töölaud %d"
 
-#: barretta@andreafontana.it/extension.js:2244
+#: barretta@andreafontana.it/extension.js:2549
 msgid "type to narrow down"
 msgstr "kirjuta, et kitsendada"
 
-#: barretta@andreafontana.it/extension.js:2436
+#: barretta@andreafontana.it/extension.js:2743
 msgid "A light app bar: zero calories for your CPU."
 msgstr "Kerge rakendusteriba: null kalorit sinu protsessorile."
 
-#: barretta@andreafontana.it/extension.js:2437
+#: barretta@andreafontana.it/extension.js:2744
 #, javascript-format
 msgid "Version %s"
 msgstr "Versioon %s"
 
-#: barretta@andreafontana.it/extension.js:2442
-#: barretta@andreafontana.it/extension.js:2449
+#: barretta@andreafontana.it/extension.js:2749
+#: barretta@andreafontana.it/extension.js:2756
 msgid "Bar size"
 msgstr "Riba suurus"
 
-#: barretta@andreafontana.it/extension.js:2473
+#: barretta@andreafontana.it/extension.js:2780
 msgid "Small"
 msgstr "Väike"
 
-#: barretta@andreafontana.it/extension.js:2474
+#: barretta@andreafontana.it/extension.js:2781
 msgid "Large"
 msgstr "Suur"
 
-#: barretta@andreafontana.it/extension.js:2492
+#: barretta@andreafontana.it/extension.js:2799
 msgid "Position"
 msgstr "Asukoht"
 
-#: barretta@andreafontana.it/extension.js:2495
+#: barretta@andreafontana.it/extension.js:2802
 msgid "Left"
 msgstr "Vasakul"
 
-#: barretta@andreafontana.it/extension.js:2495
+#: barretta@andreafontana.it/extension.js:2802
 msgid "Bottom"
 msgstr "All"
 
-#: barretta@andreafontana.it/extension.js:2495
+#: barretta@andreafontana.it/extension.js:2802
 msgid "Right"
 msgstr "Paremal"
 
-#: barretta@andreafontana.it/extension.js:2545
+#: barretta@andreafontana.it/extension.js:2852
 msgid "Off"
 msgstr "Väljas"
 
-#: barretta@andreafontana.it/extension.js:2545
+#: barretta@andreafontana.it/extension.js:2852
 msgid "Drawer"
 msgstr "Sahtel"
 
-#: barretta@andreafontana.it/extension.js:2545
+#: barretta@andreafontana.it/extension.js:2852
 msgid "Visible"
 msgstr "Nähtavad"
 
-#: barretta@andreafontana.it/extension.js:2551
+#: barretta@andreafontana.it/extension.js:2858
 msgid "Visible icons"
 msgstr "Nähtavad ikoonid"
 
-#: barretta@andreafontana.it/extension.js:2559
+#: barretta@andreafontana.it/extension.js:2866
 msgid "All"
 msgstr "Kõik"
 
-#: barretta@andreafontana.it/extension.js:2568
+#: barretta@andreafontana.it/extension.js:2875
 msgid "Hide automatically"
 msgstr "Peida automaatselt"

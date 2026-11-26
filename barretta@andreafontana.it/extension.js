@@ -180,7 +180,9 @@ function computeHaystack(window, app) {
         _('screen %d').format(window.get_monitor() + 1),
     ];
     const workspace = window.get_workspace();
-    if (workspace) {
+    if (window.is_on_all_workspaces()) {
+        parts.push('all desktops', 'all workspaces', _('On all desktops'));
+    } else if (workspace) {
         const n = workspace.index() + 1;
         parts.push(`desktop ${n}`, `workspace ${n}`, _('desktop %d').format(n));
     }
@@ -235,14 +237,75 @@ async function loadRecent() {
 // Documenti recenti di un'app: solo file locali (file://) che esistono ancora,
 // i più recenti per primi. L'esistenza si controlla senza bloccare e solo fino
 // a trovarne abbastanza.
+// I nomi con cui un'app compare nell'elenco dei recenti (in minuscolo).
+function recentNames(app) {
+    const id = app.get_id().replace(/\.desktop$/, '');
+    const exec = app.get_app_info()?.get_executable?.();
+    return new Set([id, id.split('.').pop(), app.get_name(),
+        exec ? GLib.path_get_basename(exec) : null].filter(Boolean).map(n => n.toLowerCase()));
+}
+
+// Toglie un'app dall'elenco dei recenti: i file usati anche da altre app
+// restano per quelle. Il file si riscrive senza bloccare la shell; le app GTK
+// aperte lo rileggono da sole.
+async function clearRecentFor(app) {
+    recentCache.mtime = null;     // rilettura dal disco, non la copia in memoria
+    const bookmarks = await loadRecent();
+    recentCache.mtime = null;
+    recentCache.bookmarks = null;
+    if (!bookmarks)
+        return;
+    const names = recentNames(app);
+    let changed = false;
+    for (const uri of bookmarks.get_uris()) {
+        let apps = [];
+        try {
+            apps = bookmarks.get_applications(uri);
+        } catch {
+            continue;
+        }
+        const mine = apps.filter(a => names.has(a.toLowerCase()));
+        if (mine.length === 0)
+            continue;
+        changed = true;
+        if (mine.length === apps.length) {
+            bookmarks.remove_item(uri);
+            continue;
+        }
+        for (const a of mine)
+            bookmarks.remove_application(uri, a);
+    }
+    if (!changed)
+        return;
+    const file = Gio.File.new_for_path(GLib.build_filenamev([GLib.get_user_data_dir(), 'recently-used.xbel']));
+    // A seconda della versione di GJS: byte, testo, o [testo, lunghezza].
+    let out = bookmarks.to_data();
+    if (Array.isArray(out))
+        out = out[0];
+    const data = new GLib.Bytes(typeof out === 'string' ? new TextEncoder().encode(out) : out);
+    // Prima di sostituire il file, si controlla che il nuovo si rilegga.
+    try {
+        new GLib.BookmarkFile().load_from_data(data.toArray());
+    } catch {
+        return;
+    }
+    await new Promise(resolve => {
+        file.replace_contents_bytes_async(data, null, false, Gio.FileCreateFlags.NONE, null, (f, res) => {
+            try {
+                f.replace_contents_finish(res);
+            } catch (e) {
+                console.warn(`Barretta: recenti non cancellati: ${e.message}`);
+            }
+            resolve();
+        });
+    });
+}
+
 async function recentFilesFor(app, max) {
     const bookmarks = await loadRecent();
     if (!bookmarks)
         return [];
-    const id = app.get_id().replace(/\.desktop$/, '');
-    const exec = app.get_app_info()?.get_executable?.();
-    const names = new Set([id, id.split('.').pop(), app.get_name(),
-        exec ? GLib.path_get_basename(exec) : null].filter(Boolean).map(n => n.toLowerCase()));
+    const names = recentNames(app);
     const candidates = [];
     for (const uri of bookmarks.get_uris()) {
         if (!uri.startsWith('file://'))
@@ -280,6 +343,8 @@ async function recentFilesFor(app, max) {
 function placeOf(window, monitorIndex) {
     if (window.get_monitor() !== monitorIndex)
         return _('On screen %d').format(window.get_monitor() + 1);
+    if (window.is_on_all_workspaces())
+        return _('On all desktops');
     const workspace = window.get_workspace();
     return workspace ? _('On desktop %d').format(workspace.index() + 1) : _('Elsewhere');
 }
@@ -401,6 +466,36 @@ class CountdownRing {
 
 // ---------------------------------------------------------------------------
 // Anteprime delle finestre: una sola per tutta l'estensione.
+
+// Sempre in primo piano / su tutti i desktop: stato letto dalla finestra
+// (property "above" o "on-all-workspaces") e tenuto aggiornato.
+function setWindowFlag(window, prop, on) {
+    if (!alive(window))
+        return;
+    if (prop === 'above')
+        on ? window.make_above() : window.unmake_above();
+    else
+        on ? window.stick() : window.unstick();
+}
+
+function windowFlag(window, prop) {
+    return prop === 'above' ? window.is_above() : window.is_on_all_workspaces();
+}
+
+function windowToggle(window, prop, iconParams, label) {
+    const toggle = new St.Button({
+        style_class: 'barra-preview-toggle',
+        child: new St.Icon({icon_size: 12, ...iconParams}),
+        toggle_mode: true,
+        checked: windowFlag(window, prop),
+        accessible_name: label,
+    });
+    toggle.connect('clicked', () => setWindowFlag(window, prop, toggle.checked));
+    window.connectObject(`notify::${prop}`, () => {
+        toggle.checked = windowFlag(window, prop);
+    }, toggle);
+    return toggle;
+}
 
 class Preview {
     constructor(owner) {
@@ -560,22 +655,35 @@ class Preview {
             text: window.get_title() ?? '',
         }));
 
-        // × in alto a destra, visibile al passaggio del mouse: chiude la finestra.
-        const close = new St.Button({
-            style_class: 'barra-preview-close',
-            child: new St.Icon({icon_name: 'window-close-symbolic', icon_size: 12}),
+        // In alto a destra, visibili al passaggio del mouse: sempre in primo
+        // piano, su tutti i desktop e ×. I primi due restano visibili, accesi,
+        // finché sono attivi.
+        const tools = new St.BoxLayout({
+            style_class: 'barra-preview-tools',
             x_align: Clutter.ActorAlign.END,
             y_align: Clutter.ActorAlign.START,
             x_expand: true,
             y_expand: true,
-            opacity: 0,
+        });
+        const above = windowToggle(window, 'above', {icon_name: 'view-pin-symbolic'},
+            _('Always on top'));
+        const sticky = windowToggle(window, 'on-all-workspaces',
+            {gicon: new Gio.FileIcon({file: this._owner.dir.get_child('icons/barra-all-desktops-symbolic.svg')})},
+            _('On all desktops'));
+        const close = new St.Button({
+            style_class: 'barra-preview-close',
+            child: new St.Icon({icon_name: 'window-close-symbolic', icon_size: 12}),
+            accessible_name: _('Close'),
         });
         close.connect('clicked', () => this._closeWindow(window));
+        tools.add_child(above);
+        tools.add_child(sticky);
+        tools.add_child(close);
         const ring = new CountdownRing();
         const stack = new St.Widget({layout_manager: new Clutter.BinLayout()});
         stack.add_child(box);
         stack.add_child(ring.actor);
-        stack.add_child(close);
+        stack.add_child(tools);
 
         const button = new St.Button({
             style_class: 'barra-preview-item',
@@ -598,9 +706,15 @@ class Preview {
                 return DND.DragMotionResult.CONTINUE;
             },
         };
-        button.connect('notify::hover', () => {
+        const showTools = () => {
             close.opacity = button.hover ? 255 : 0;
-        });
+            for (const t of [above, sticky])
+                t.opacity = button.hover || t.checked ? 255 : 0;
+        };
+        button.connect('notify::hover', showTools);
+        above.connect('notify::checked', showTools);
+        sticky.connect('notify::checked', showTools);
+        showTools();
         button.connect('clicked', (_b, mouseButton) => {
             // Clic centrale: chiude, come sulle schede del browser.
             if (mouseButton === Clutter.BUTTON_MIDDLE) {
@@ -1102,7 +1216,18 @@ class AppItem {
             menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem(place));
             windows.forEach(addWindow);
         }
-        if (this.windows.length + this.elsewhere.length > 0)
+        // Con una sola finestra, le sue opzioni stanno direttamente nel menu;
+        // con più finestre si scelgono dalle anteprime.
+        const all = [...this.windows, ...this.elsewhere];
+        if (all.length === 1) {
+            const [w] = all;
+            for (const [prop, label] of [['above', _('Always on top')], ['on-all-workspaces', _('On all desktops')]]) {
+                const item = new PopupMenu.PopupSwitchMenuItem(label, windowFlag(w, prop));
+                item.connect('toggled', (_i, on) => setWindowFlag(w, prop, on));
+                menu.addMenuItem(item);
+            }
+        }
+        if (all.length > 0)
             menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
         const newWindow = app.can_open_new_window();
@@ -1126,7 +1251,21 @@ class AppItem {
         recentFilesFor(app, RECENT_MAX).then(recent => {
             if (token !== this._menuToken || !this._menu || recent.length === 0)
                 return;
-            recentSection.addMenuItem(new PopupMenu.PopupSeparatorMenuItem(_('Recent files')));
+            // Titolo della sezione con, a destra, il tasto per svuotarla: fuori
+            // dall'elenco, così non si scambia per un file.
+            const header = new PopupMenu.PopupSeparatorMenuItem(_('Recent files'));
+            const clear = new St.Button({
+                style_class: 'barra-recent-clear',
+                child: new St.Icon({icon_name: 'edit-clear-all-symbolic', icon_size: 14}),
+                accessible_name: _('Clear recent files'),
+                y_align: Clutter.ActorAlign.CENTER,
+            });
+            clear.connect('clicked', () => {
+                menu.close();
+                clearRecentFor(app).catch(e => console.warn(`Barretta: ${e.message}`));
+            });
+            header.add_child(clear);
+            recentSection.addMenuItem(header);
             for (const uri of recent) {
                 recentSection.addAction(Gio.File.new_for_uri(uri).get_basename(), () => {
                     app.get_app_info()?.launch_uris([uri], global.create_app_launch_context(0, -1));
@@ -2386,7 +2525,9 @@ class SearchPopup {
             if (multiMonitor)
                 where.push(_('Screen %d').format(w.get_monitor() + 1));
             const ws = w.get_workspace();
-            if (ws)
+            if (w.is_on_all_workspaces())
+                where.push(_('All desktops'));
+            else if (ws)
                 where.push(_('Desktop %d').format(ws.index() + 1));
 
             const text = new St.BoxLayout({orientation: Clutter.Orientation.VERTICAL, x_expand: true});

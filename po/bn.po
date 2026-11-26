@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: barretta 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 01:46+0100\n"
+"POT-Creation-Date: 2026-11-26 15:47+0100\n"
 "PO-Revision-Date: 2026-11-26 00:00+0100\n"
 "Last-Translator: Barretta\n"
 "Language-Team: bn\n"
@@ -12,153 +12,177 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: barretta@andreafontana.it/extension.js:172
+#: barretta@andreafontana.it/extension.js:180
 #, javascript-format
 msgid "screen %d"
 msgstr "স্ক্রিন %d"
 
-#: barretta@andreafontana.it/extension.js:177
+#: barretta@andreafontana.it/extension.js:184
+#: barretta@andreafontana.it/extension.js:347
+#: barretta@andreafontana.it/extension.js:672
+#: barretta@andreafontana.it/extension.js:1224
+msgid "On all desktops"
+msgstr "সব ডেস্কটপে"
+
+#: barretta@andreafontana.it/extension.js:187
 #, javascript-format
 msgid "desktop %d"
 msgstr "ডেস্কটপ %d"
 
-#: barretta@andreafontana.it/extension.js:274
+#: barretta@andreafontana.it/extension.js:345
 #, javascript-format
 msgid "On screen %d"
 msgstr "স্ক্রিন %d-এ"
 
-#: barretta@andreafontana.it/extension.js:276
+#: barretta@andreafontana.it/extension.js:349
 #, javascript-format
 msgid "On desktop %d"
 msgstr "ডেস্কটপ %d-এ"
 
-#: barretta@andreafontana.it/extension.js:276
+#: barretta@andreafontana.it/extension.js:349
 msgid "Elsewhere"
 msgstr "অন্য কোথাও"
 
-#: barretta@andreafontana.it/extension.js:422
-#: barretta@andreafontana.it/extension.js:940
+#: barretta@andreafontana.it/extension.js:621
+#: barretta@andreafontana.it/extension.js:1212
 msgid "On this screen"
 msgstr "এই স্ক্রিনে"
 
-#: barretta@andreafontana.it/extension.js:951
+#: barretta@andreafontana.it/extension.js:669
+#: barretta@andreafontana.it/extension.js:1224
+msgid "Always on top"
+msgstr "সবসময় উপরে"
+
+#: barretta@andreafontana.it/extension.js:676
+msgid "Close"
+msgstr "বন্ধ করুন"
+
+#: barretta@andreafontana.it/extension.js:1235
 msgid "New window here"
 msgstr "এখানে নতুন উইন্ডো"
 
-#: barretta@andreafontana.it/extension.js:966
+#: barretta@andreafontana.it/extension.js:1254
 msgid "Recent files"
 msgstr "সাম্প্রতিক ফাইল"
 
-#: barretta@andreafontana.it/extension.js:979
+#: barretta@andreafontana.it/extension.js:1260
+msgid "Clear recent files"
+msgstr "সাম্প্রতিক ফাইল মুছুন"
+
+#: barretta@andreafontana.it/extension.js:1270
 msgid "Unpin"
 msgstr "আনপিন"
 
-#: barretta@andreafontana.it/extension.js:981
+#: barretta@andreafontana.it/extension.js:1272
 msgid "Pin"
 msgstr "পিন"
 
-#: barretta@andreafontana.it/extension.js:986
+#: barretta@andreafontana.it/extension.js:1277
 msgid "Stop keeping first"
 msgstr "প্রথমে রাখা বন্ধ করুন"
 
-#: barretta@andreafontana.it/extension.js:986
+#: barretta@andreafontana.it/extension.js:1277
 msgid "Keep first"
 msgstr "প্রথমে রাখুন"
 
-#: barretta@andreafontana.it/extension.js:988
+#: barretta@andreafontana.it/extension.js:1279
 msgid "Quit"
 msgstr "প্রস্থান"
 
-#: barretta@andreafontana.it/extension.js:1214
-#: barretta@andreafontana.it/extension.js:2212
+#: barretta@andreafontana.it/extension.js:1509
+#: barretta@andreafontana.it/extension.js:2515
 #, javascript-format
 msgid "Screen %d"
 msgstr "স্ক্রিন %d"
 
-#: barretta@andreafontana.it/extension.js:1338
-#: barretta@andreafontana.it/extension.js:2515
+#: barretta@andreafontana.it/extension.js:1632
+#: barretta@andreafontana.it/extension.js:2822
 msgid "System tray"
 msgstr "সিস্টেম ট্রে"
 
-#: barretta@andreafontana.it/extension.js:2117
+#: barretta@andreafontana.it/extension.js:2420
 msgid "Search: title, app, “desktop 2”…"
 msgstr "খুঁজুন: শিরোনাম, অ্যাপ, “ডেস্কটপ 2”…"
 
-#: barretta@andreafontana.it/extension.js:2129
+#: barretta@andreafontana.it/extension.js:2432
 msgid "No windows found"
 msgstr "কোনো উইন্ডো পাওয়া যায়নি"
 
-#: barretta@andreafontana.it/extension.js:2134
+#: barretta@andreafontana.it/extension.js:2437
 msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
 msgstr "Enter: উইন্ডোতে যান · Ctrl+Enter: বার ফিল্টার করা রাখুন"
 
-#: barretta@andreafontana.it/extension.js:2215
+#: barretta@andreafontana.it/extension.js:2518
+msgid "All desktops"
+msgstr "সব ডেস্কটপ"
+
+#: barretta@andreafontana.it/extension.js:2520
 #, javascript-format
 msgid "Desktop %d"
 msgstr "ডেস্কটপ %d"
 
-#: barretta@andreafontana.it/extension.js:2244
+#: barretta@andreafontana.it/extension.js:2549
 msgid "type to narrow down"
 msgstr "সংকুচিত করতে টাইপ করুন"
 
-#: barretta@andreafontana.it/extension.js:2436
+#: barretta@andreafontana.it/extension.js:2743
 msgid "A light app bar: zero calories for your CPU."
 msgstr "একটি হালকা অ্যাপ বার: আপনার CPU-র জন্য শূন্য ক্যালোরি।"
 
-#: barretta@andreafontana.it/extension.js:2437
+#: barretta@andreafontana.it/extension.js:2744
 #, javascript-format
 msgid "Version %s"
 msgstr "সংস্করণ %s"
 
-#: barretta@andreafontana.it/extension.js:2442
-#: barretta@andreafontana.it/extension.js:2449
+#: barretta@andreafontana.it/extension.js:2749
+#: barretta@andreafontana.it/extension.js:2756
 msgid "Bar size"
 msgstr "বারের আকার"
 
-#: barretta@andreafontana.it/extension.js:2473
+#: barretta@andreafontana.it/extension.js:2780
 msgid "Small"
 msgstr "ছোট"
 
-#: barretta@andreafontana.it/extension.js:2474
+#: barretta@andreafontana.it/extension.js:2781
 msgid "Large"
 msgstr "বড়"
 
-#: barretta@andreafontana.it/extension.js:2492
+#: barretta@andreafontana.it/extension.js:2799
 msgid "Position"
 msgstr "অবস্থান"
 
-#: barretta@andreafontana.it/extension.js:2495
+#: barretta@andreafontana.it/extension.js:2802
 msgid "Left"
 msgstr "বামে"
 
-#: barretta@andreafontana.it/extension.js:2495
+#: barretta@andreafontana.it/extension.js:2802
 msgid "Bottom"
 msgstr "নিচে"
 
-#: barretta@andreafontana.it/extension.js:2495
+#: barretta@andreafontana.it/extension.js:2802
 msgid "Right"
 msgstr "ডানে"
 
-#: barretta@andreafontana.it/extension.js:2545
+#: barretta@andreafontana.it/extension.js:2852
 msgid "Off"
 msgstr "বন্ধ"
 
-#: barretta@andreafontana.it/extension.js:2545
+#: barretta@andreafontana.it/extension.js:2852
 msgid "Drawer"
 msgstr "ড্রয়ার"
 
-#: barretta@andreafontana.it/extension.js:2545
+#: barretta@andreafontana.it/extension.js:2852
 msgid "Visible"
 msgstr "দৃশ্যমান"
 
-#: barretta@andreafontana.it/extension.js:2551
+#: barretta@andreafontana.it/extension.js:2858
 msgid "Visible icons"
 msgstr "দৃশ্যমান আইকন"
 
-#: barretta@andreafontana.it/extension.js:2559
+#: barretta@andreafontana.it/extension.js:2866
 msgid "All"
 msgstr "সব"
 
-#: barretta@andreafontana.it/extension.js:2568
+#: barretta@andreafontana.it/extension.js:2875
 msgid "Hide automatically"
 msgstr "স্বয়ংক্রিয়ভাবে লুকান"
