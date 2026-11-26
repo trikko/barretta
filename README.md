@@ -31,7 +31,8 @@ The star at the bottom switches between your favorites plus the open apps, and t
 ### Notifications and progress
 
 A round badge counts the app's notifications, from GNOME's notifications or from the app itself (the
-same count Telegram, Thunderbird and others publish for docks). Downloads and copies show their
+same count Telegram, Thunderbird and others publish for docks). GNOME's notifications stop counting once
+you bring the app to the front, even if they stay in the notification list. Downloads and copies show their
 progress as a ring inside the tile.
 
 ![Badges and progress ring](docs/notifications.gif)

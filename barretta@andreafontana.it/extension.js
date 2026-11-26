@@ -2764,7 +2764,9 @@ class InfoPopup {
 // Conteggio delle notifiche per app, da due fonti:
 // - LauncherEntry (D-Bus): il numero che le app espongono da sole (Telegram,
 //   Thunderbird, Firefox...);
-// - le notifiche di GNOME ancora presenti per quell'app.
+// - le notifiche di GNOME ancora presenti per quell'app, ma solo quelle
+//   arrivate dopo l'ultima volta che l'app è stata in primo piano: molte app
+//   (Firefox, Electron) non ritirano le notifiche già lette nell'app.
 // Vale il più alto dei due.
 
 class Notifications {
@@ -2774,6 +2776,9 @@ class Notifications {
         // LauncherEntry di ogni app; gli aggiornamenti possono essere parziali.
         this._entries = new Map();
         this._trayCounts = null;      // id app -> notifiche, ricalcolato una volta per aggiornamento
+        this._seen = new WeakSet();   // notifiche arrivate o rimaste mentre la loro app era in primo piano
+        this._tracker = Shell.WindowTracker.get_default();
+        this._tracker.connectObject('notify::focus-app', () => this._changed(), this);
         this._signalId = Gio.DBus.session.signal_subscribe(
             null, 'com.canonical.Unity.LauncherEntry', 'Update', null, null,
             Gio.DBusSignalFlags.NONE,
@@ -2856,10 +2861,20 @@ class Notifications {
     countFor(id) {
         if (!this._trayCounts) {
             this._trayCounts = new Map();
+            const focusId = this._tracker.focus_app?.get_id();
             for (const source of Main.messageTray.getSources()) {
                 const appId = this._sourceAppId(source);
-                if (appId)
-                    this._trayCounts.set(appId, (this._trayCounts.get(appId) ?? 0) + source.count);
+                if (!appId)
+                    continue;
+                let unseen = 0;
+                for (const n of source.notifications) {
+                    if (appId === focusId)
+                        this._seen.add(n);
+                    else if (!this._seen.has(n))
+                        unseen++;
+                }
+                if (unseen)
+                    this._trayCounts.set(appId, (this._trayCounts.get(appId) ?? 0) + unseen);
             }
         }
         const e = this._entries.get(id);
@@ -2869,6 +2884,7 @@ class Notifications {
     destroy() {
         Gio.DBus.session.signal_unsubscribe(this._signalId);
         Main.messageTray.disconnectObject(this);
+        this._tracker.disconnectObject(this);
         for (const source of Main.messageTray.getSources())
             source.disconnectObject(this);
         this._entries.clear();
