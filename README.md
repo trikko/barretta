@@ -66,7 +66,9 @@ the icon.
 
 Each screen has its own bar, with its own windows. A pill under the icon says how many windows are
 here and how many elsewhere (no zeros, no lonely "1"). Right-click lists the windows grouped by screen
-and desktop; <kbd>Shift</kbd>+click brings a window from another screen to this one.
+and desktop; <kbd>Shift</kbd>+click brings a window from another screen to this one (on a preview,
+that very window), <kbd>Alt</kbd>+click takes you to it when it's the app's only window. With more
+than one window elsewhere, both open the previews right away, to pick one.
 
 ![Two screens, bringing windows here](docs/multi-monitor.gif)
 
@@ -88,7 +90,8 @@ and desktop; <kbd>Shift</kbd>+click brings a window from another screen to this 
 | On an icon | |
 |---|---|
 | Click | Bring the app forward, or open it; on the active app, cycle its windows or minimize |
-| <kbd>Shift</kbd>+click | Bring the window here from another screen |
+| <kbd>Shift</kbd>+click | Bring the window here from another screen (with several, show the previews) |
+| <kbd>Alt</kbd>+click | Go to the app's only window, on another screen or desktop (with several, show the previews) |
 | Middle click, <kbd>Ctrl</kbd>+click | Open a new window |
 | Right-click, <kbd>Menu</kbd>, <kbd>Shift</kbd>+<kbd>F10</kbd> | App menu |
 | <kbd>Shift</kbd>+wheel | Cycle the app's windows |

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: barretta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 15:47+0100\n"
+"POT-Creation-Date: 2026-11-27 14:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,177 +17,181 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: barretta@andreafontana.it/extension.js:180
+#: barretta@andreafontana.it/extension.js:181
 #, javascript-format
 msgid "screen %d"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:184
-#: barretta@andreafontana.it/extension.js:347
-#: barretta@andreafontana.it/extension.js:672
-#: barretta@andreafontana.it/extension.js:1224
+#: barretta@andreafontana.it/extension.js:185
+#: barretta@andreafontana.it/extension.js:348
+#: barretta@andreafontana.it/extension.js:674
+#: barretta@andreafontana.it/extension.js:1306
 msgid "On all desktops"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:187
+#: barretta@andreafontana.it/extension.js:188
 #, javascript-format
 msgid "desktop %d"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:345
+#: barretta@andreafontana.it/extension.js:346
 #, javascript-format
 msgid "On screen %d"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:349
+#: barretta@andreafontana.it/extension.js:350
 #, javascript-format
 msgid "On desktop %d"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:349
+#: barretta@andreafontana.it/extension.js:350
 msgid "Elsewhere"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:621
-#: barretta@andreafontana.it/extension.js:1212
+#: barretta@andreafontana.it/extension.js:623
+#: barretta@andreafontana.it/extension.js:1292
 msgid "On this screen"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:669
-#: barretta@andreafontana.it/extension.js:1224
+#: barretta@andreafontana.it/extension.js:671
+#: barretta@andreafontana.it/extension.js:1306
 msgid "Always on top"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:676
+#: barretta@andreafontana.it/extension.js:678
 msgid "Close"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:1235
+#: barretta@andreafontana.it/extension.js:1305
+msgid "Bring here"
+msgstr ""
+
+#: barretta@andreafontana.it/extension.js:1317
 msgid "New window here"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:1254
+#: barretta@andreafontana.it/extension.js:1338
 msgid "Recent files"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:1260
+#: barretta@andreafontana.it/extension.js:1342
 msgid "Clear recent files"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:1270
+#: barretta@andreafontana.it/extension.js:1363
 msgid "Unpin"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:1272
+#: barretta@andreafontana.it/extension.js:1365
 msgid "Pin"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:1277
+#: barretta@andreafontana.it/extension.js:1370
 msgid "Stop keeping first"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:1277
+#: barretta@andreafontana.it/extension.js:1370
 msgid "Keep first"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:1279
+#: barretta@andreafontana.it/extension.js:1372
 msgid "Quit"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:1509
-#: barretta@andreafontana.it/extension.js:2515
+#: barretta@andreafontana.it/extension.js:1602
+#: barretta@andreafontana.it/extension.js:2608
 #, javascript-format
 msgid "Screen %d"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:1632
-#: barretta@andreafontana.it/extension.js:2822
+#: barretta@andreafontana.it/extension.js:1725
+#: barretta@andreafontana.it/extension.js:2915
 msgid "System tray"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2420
+#: barretta@andreafontana.it/extension.js:2513
 msgid "Search: title, app, “desktop 2”…"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2432
+#: barretta@andreafontana.it/extension.js:2525
 msgid "No windows found"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2437
+#: barretta@andreafontana.it/extension.js:2530
 msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2518
+#: barretta@andreafontana.it/extension.js:2611
 msgid "All desktops"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2520
+#: barretta@andreafontana.it/extension.js:2613
 #, javascript-format
 msgid "Desktop %d"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2549
+#: barretta@andreafontana.it/extension.js:2642
 msgid "type to narrow down"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2743
+#: barretta@andreafontana.it/extension.js:2836
 msgid "A light app bar: zero calories for your CPU."
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2744
+#: barretta@andreafontana.it/extension.js:2837
 #, javascript-format
 msgid "Version %s"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2749
-#: barretta@andreafontana.it/extension.js:2756
+#: barretta@andreafontana.it/extension.js:2842
+#: barretta@andreafontana.it/extension.js:2849
 msgid "Bar size"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2780
+#: barretta@andreafontana.it/extension.js:2873
 msgid "Small"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2781
+#: barretta@andreafontana.it/extension.js:2874
 msgid "Large"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2799
+#: barretta@andreafontana.it/extension.js:2892
 msgid "Position"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2802
+#: barretta@andreafontana.it/extension.js:2895
 msgid "Left"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2802
+#: barretta@andreafontana.it/extension.js:2895
 msgid "Bottom"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2802
+#: barretta@andreafontana.it/extension.js:2895
 msgid "Right"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2852
+#: barretta@andreafontana.it/extension.js:2945
 msgid "Off"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2852
+#: barretta@andreafontana.it/extension.js:2945
 msgid "Drawer"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2852
+#: barretta@andreafontana.it/extension.js:2945
 msgid "Visible"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2858
+#: barretta@andreafontana.it/extension.js:2951
 msgid "Visible icons"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2866
+#: barretta@andreafontana.it/extension.js:2959
 msgid "All"
 msgstr ""
 
-#: barretta@andreafontana.it/extension.js:2875
+#: barretta@andreafontana.it/extension.js:2968
 msgid "Hide automatically"
 msgstr ""

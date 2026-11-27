@@ -87,6 +87,9 @@ const ARROW_REPEAT = 90;
 const PREVIEW_DELAY = 400;
 const PREVIEW_HIDE_DELAY = 250;
 const PREVIEW_STAY_DISTANCE = 60;   // px: dopo una chiusura, l'elenco resta aperto finché il mouse è più vicino
+const PREVIEW_REGROUP_DELAY = 100;  // ms: dopo "porta qui" dall'anteprima, il tempo perché la barra si aggiorni
+const PREVIEW_TOOLS_SMALL = 0.6;    // scala dei tastini accesi, in un angolo, senza mouse
+const TOOLTIP_DELAY = 500;          // ms di mouse fermo su un tastino prima della sua spiegazione
 const WS_SWITCH_INTERVAL = 250; // ms minimi tra due cambi di spazio di lavoro
 const PREVIEW_SUPPRESS = 400;  // ms senza anteprime dopo uno scorrimento
 const PREVIEW_W = 160;
@@ -483,15 +486,58 @@ function windowFlag(window, prop) {
     return prop === 'above' ? window.is_above() : window.is_on_all_workspaces();
 }
 
+// Spiegazione di un tastino al passaggio del mouse: sopra il tastino, o sotto
+// se in alto non c'è posto. Se ne va quando il mouse esce o il tastino sparisce.
+function addTooltip(actor, text) {
+    actor.track_hover = true;
+    let label = null;
+    let timeoutId = 0;
+    const hide = () => {
+        if (timeoutId)
+            GLib.source_remove(timeoutId);
+        timeoutId = 0;
+        label?.destroy();
+        label = null;
+    };
+    actor.connect('notify::hover', () => {
+        if (!actor.hover) {
+            hide();
+            return;
+        }
+        if (timeoutId || label)
+            return;
+        timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, TOOLTIP_DELAY, () => {
+            timeoutId = 0;
+            if (!actor.hover || !actor.mapped)
+                return GLib.SOURCE_REMOVE;
+            label = new St.Label({style_class: 'barra-tooltip', text});
+            Main.uiGroup.add_child(label);
+            const [x, y] = actor.get_transformed_position();
+            const [w, h] = actor.get_transformed_size();
+            const [, lw] = label.get_preferred_width(-1);
+            const [, lh] = label.get_preferred_height(lw);
+            const monitor = Main.layoutManager.findMonitorForActor(actor) ?? Main.layoutManager.primaryMonitor;
+            const lx = Math.min(Math.max(x + (w - lw) / 2, monitor.x), monitor.x + monitor.width - lw);
+            let ly = y - lh - 4;
+            if (ly < monitor.y)
+                ly = y + h + 4;
+            label.set_position(Math.round(lx), Math.round(ly));
+            return GLib.SOURCE_REMOVE;
+        });
+    });
+    actor.connect('destroy', hide);
+}
+
 function windowToggle(window, prop, iconParams, label) {
     const toggle = new St.Button({
         style_class: 'barra-preview-toggle',
-        child: new St.Icon({icon_size: 12, ...iconParams}),
+        child: new St.Icon({icon_size: 16, ...iconParams}),
         toggle_mode: true,
         checked: windowFlag(window, prop),
         accessible_name: label,
     });
     toggle.connect('clicked', () => setWindowFlag(window, prop, toggle.checked));
+    addTooltip(toggle, label);
     window.connectObject(`notify::${prop}`, () => {
         toggle.checked = windowFlag(window, prop);
     }, toggle);
@@ -545,6 +591,16 @@ class Preview {
             this._show(item);
             return GLib.SOURCE_REMOVE;
         });
+    }
+
+    isShowing(item) {
+        return this.actor.visible && this._item === item;
+    }
+
+    showNow(item) {
+        this._cancelShow();
+        this._cancelHide();
+        this._show(item);
     }
 
     scheduleHide() {
@@ -641,15 +697,19 @@ class Preview {
             style_class: 'barra-preview-content',
             orientation: Clutter.Orientation.VERTICAL,
         });
+        // La miniatura, con sopra i tastini.
+        const thumb = new St.Widget({layout_manager: new Clutter.BinLayout()});
+        box.add_child(thumb);
         const source = window.get_compositor_private();
         if (source) {
             const [w, h] = source.get_size();
             const scale = Math.min(PREVIEW_W / Math.max(w, 1), PREVIEW_H / Math.max(h, 1), 1);
-            box.add_child(new Clutter.Clone({
+            thumb.add_child(new Clutter.Clone({
                 source,
                 width: Math.round(w * scale),
                 height: Math.round(h * scale),
                 x_align: Clutter.ActorAlign.CENTER,
+                y_align: Clutter.ActorAlign.CENTER,
             }));
         }
         box.add_child(new St.Label({
@@ -657,35 +717,36 @@ class Preview {
             text: window.get_title() ?? '',
         }));
 
-        // In alto a destra, visibili al passaggio del mouse: sempre in primo
-        // piano, su tutti i desktop e ×. I primi due restano visibili, accesi,
-        // finché sono attivi.
+        // Sempre in primo piano, su tutti i desktop e ×: grandi al centro della
+        // miniatura al passaggio del mouse (l'anteprima è già stata vista).
+        // Senza mouse restano, piccoli in alto a destra, solo quelli accesi.
         const tools = new St.BoxLayout({
             style_class: 'barra-preview-tools',
-            x_align: Clutter.ActorAlign.END,
-            y_align: Clutter.ActorAlign.START,
             x_expand: true,
             y_expand: true,
         });
-        const above = windowToggle(window, 'above', {icon_name: 'view-pin-symbolic'},
+        // Lo spillo per "su tutti i desktop", come in KDE; per "sempre in
+        // primo piano" una finestra piena davanti a un'altra.
+        const above = windowToggle(window, 'above',
+            {gicon: new Gio.FileIcon({file: this._owner.dir.get_child('icons/barra-always-on-top-symbolic.svg')})},
             _('Always on top'));
-        const sticky = windowToggle(window, 'on-all-workspaces',
-            {gicon: new Gio.FileIcon({file: this._owner.dir.get_child('icons/barra-all-desktops-symbolic.svg')})},
+        const sticky = windowToggle(window, 'on-all-workspaces', {icon_name: 'view-pin-symbolic'},
             _('On all desktops'));
         const close = new St.Button({
             style_class: 'barra-preview-close',
-            child: new St.Icon({icon_name: 'window-close-symbolic', icon_size: 12}),
+            child: new St.Icon({icon_name: 'window-close-symbolic', icon_size: 16}),
             accessible_name: _('Close'),
         });
         close.connect('clicked', () => this._closeWindow(window));
+        addTooltip(close, _('Close'));
         tools.add_child(above);
         tools.add_child(sticky);
         tools.add_child(close);
+        thumb.add_child(tools);
         const ring = new CountdownRing();
         const stack = new St.Widget({layout_manager: new Clutter.BinLayout()});
         stack.add_child(box);
         stack.add_child(ring.actor);
-        stack.add_child(tools);
 
         const button = new St.Button({
             style_class: 'barra-preview-item',
@@ -708,10 +769,17 @@ class Preview {
                 return DND.DragMotionResult.CONTINUE;
             },
         };
+        // Solo posizione e scala cambiano, non la misura: l'anteprima non si
+        // ridimensiona passandoci sopra.
         const showTools = () => {
-            close.opacity = button.hover ? 255 : 0;
+            const hover = button.hover;
+            close.opacity = hover ? 255 : 0;
             for (const t of [above, sticky])
-                t.opacity = button.hover || t.checked ? 255 : 0;
+                t.opacity = hover || t.checked ? 255 : 0;
+            tools.x_align = hover ? Clutter.ActorAlign.CENTER : Clutter.ActorAlign.END;
+            tools.y_align = hover ? Clutter.ActorAlign.CENTER : Clutter.ActorAlign.START;
+            tools.set_pivot_point(1, 0);
+            tools.set_scale(hover ? 1 : PREVIEW_TOOLS_SMALL, hover ? 1 : PREVIEW_TOOLS_SMALL);
         };
         button.connect('notify::hover', showTools);
         above.connect('notify::checked', showTools);
@@ -721,6 +789,23 @@ class Preview {
             // Clic centrale: chiude, come sulle schede del browser.
             if (mouseButton === Clutter.BUTTON_MIDDLE) {
                 this._closeWindow(window);
+                return;
+            }
+            // Maiusc+clic su una finestra che sta altrove: la porta qui. La
+            // lista resta aperta e, appena la barra si è aggiornata, la finestra
+            // passa nel gruppo di questo schermo.
+            const state = Clutter.get_current_event()?.get_state() ?? 0;
+            if ((state & Clutter.ModifierType.SHIFT_MASK) && this._item?.elsewhere.includes(window)) {
+                const item = this._item;
+                item._bringHere(window);
+                if (this._regroupId)
+                    GLib.source_remove(this._regroupId);
+                this._regroupId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, PREVIEW_REGROUP_DELAY, () => {
+                    this._regroupId = 0;
+                    if (this._item === item && this.actor.visible)
+                        this._show(item);
+                    return GLib.SOURCE_REMOVE;
+                });
                 return;
             }
             // Le anteprime restano aperte finché il mouse non esce: se era la
@@ -845,6 +930,9 @@ class Preview {
         this._cancelShow();
         this._cancelHide();
         this._endStayOpen();
+        if (this._regroupId)
+            GLib.source_remove(this._regroupId);
+        this._regroupId = 0;
         for (const window of this._closing)
             window.disconnectObject(this);
         this._closing.clear();
@@ -1142,18 +1230,31 @@ class AppItem {
     _onClicked(button) {
         if (this.suppressClick)
             return;
-        this.bar.ext.preview.hide();
+        const preview = this.bar.ext.preview;
         const state = Clutter.get_current_event()?.get_state() ?? 0;
         const ctrl = state & Clutter.ModifierType.CONTROL_MASK;
         const shift = state & Clutter.ModifierType.SHIFT_MASK;
+        const alt = state & Clutter.ModifierType.MOD1_MASK;
+        // Maiusc+clic o Alt+clic con più finestre altrove: quale portare qui,
+        // o dove andare, si sceglie dall'anteprima, che si apre subito.
+        if (button === Clutter.BUTTON_PRIMARY && (shift || alt) && !ctrl && this.elsewhere.length > 1) {
+            if (!preview.isShowing(this))
+                preview.showNow(this);
+            return;
+        }
+        preview.hide();
         // Clic centrale o Ctrl+clic: una finestra nuova, qui.
         if (button === Clutter.BUTTON_MIDDLE || (button === Clutter.BUTTON_PRIMARY && ctrl))
             this.app.open_new_window(-1);
         else if (button === Clutter.BUTTON_SECONDARY)
             this._openMenu();
         // Maiusc+clic: porta qui la finestra che è su un altro schermo o desktop.
-        else if (shift && this.elsewhere.length > 0)
-            this._bringHere(mostRecent(this.elsewhere));
+        else if (shift && this.elsewhere.length === 1)
+            this._bringHere(this.elsewhere[0]);
+        // Alt+clic: va dov'è l'unica finestra dell'app (con più finestre si
+        // sceglie dall'anteprima).
+        else if (alt && this.elsewhere.length === 1 && this.windows.length === 0)
+            activate(this.elsewhere[0]);
         else
             activateApp(this.app, this.windows);
     }
@@ -1293,6 +1394,8 @@ class AppItem {
         const all = [...this.windows, ...this.elsewhere];
         if (all.length === 1) {
             const [w] = all;
+            if (this.elsewhere.includes(w))
+                menu.addAction(_('Bring here'), () => this._bringHere(w));
             for (const [prop, label] of [['above', _('Always on top')], ['on-all-workspaces', _('On all desktops')]]) {
                 const item = new PopupMenu.PopupSwitchMenuItem(label, windowFlag(w, prop));
                 item.connect('toggled', (_i, on) => setWindowFlag(w, prop, on));

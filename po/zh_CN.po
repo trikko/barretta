@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: barretta 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 15:47+0100\n"
+"POT-Creation-Date: 2026-11-27 14:44+0100\n"
 "PO-Revision-Date: 2026-11-26 00:00+0100\n"
 "Last-Translator: Barretta\n"
 "Language-Team: zh_CN\n"
@@ -12,177 +12,181 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: barretta@andreafontana.it/extension.js:180
+#: barretta@andreafontana.it/extension.js:181
 #, javascript-format
 msgid "screen %d"
 msgstr "屏幕 %d"
 
-#: barretta@andreafontana.it/extension.js:184
-#: barretta@andreafontana.it/extension.js:347
-#: barretta@andreafontana.it/extension.js:672
-#: barretta@andreafontana.it/extension.js:1224
+#: barretta@andreafontana.it/extension.js:185
+#: barretta@andreafontana.it/extension.js:348
+#: barretta@andreafontana.it/extension.js:674
+#: barretta@andreafontana.it/extension.js:1306
 msgid "On all desktops"
 msgstr "在所有桌面上"
 
-#: barretta@andreafontana.it/extension.js:187
+#: barretta@andreafontana.it/extension.js:188
 #, javascript-format
 msgid "desktop %d"
 msgstr "桌面 %d"
 
-#: barretta@andreafontana.it/extension.js:345
+#: barretta@andreafontana.it/extension.js:346
 #, javascript-format
 msgid "On screen %d"
 msgstr "在屏幕 %d 上"
 
-#: barretta@andreafontana.it/extension.js:349
+#: barretta@andreafontana.it/extension.js:350
 #, javascript-format
 msgid "On desktop %d"
 msgstr "在桌面 %d 上"
 
-#: barretta@andreafontana.it/extension.js:349
+#: barretta@andreafontana.it/extension.js:350
 msgid "Elsewhere"
 msgstr "在别处"
 
-#: barretta@andreafontana.it/extension.js:621
-#: barretta@andreafontana.it/extension.js:1212
+#: barretta@andreafontana.it/extension.js:623
+#: barretta@andreafontana.it/extension.js:1292
 msgid "On this screen"
 msgstr "在此屏幕上"
 
-#: barretta@andreafontana.it/extension.js:669
-#: barretta@andreafontana.it/extension.js:1224
+#: barretta@andreafontana.it/extension.js:671
+#: barretta@andreafontana.it/extension.js:1306
 msgid "Always on top"
 msgstr "总在最前"
 
-#: barretta@andreafontana.it/extension.js:676
+#: barretta@andreafontana.it/extension.js:678
 msgid "Close"
 msgstr "关闭"
 
-#: barretta@andreafontana.it/extension.js:1235
+#: barretta@andreafontana.it/extension.js:1305
+msgid "Bring here"
+msgstr "移到这里"
+
+#: barretta@andreafontana.it/extension.js:1317
 msgid "New window here"
 msgstr "在此新建窗口"
 
-#: barretta@andreafontana.it/extension.js:1254
+#: barretta@andreafontana.it/extension.js:1338
 msgid "Recent files"
 msgstr "最近的文件"
 
-#: barretta@andreafontana.it/extension.js:1260
+#: barretta@andreafontana.it/extension.js:1342
 msgid "Clear recent files"
 msgstr "清除最近文件"
 
-#: barretta@andreafontana.it/extension.js:1270
+#: barretta@andreafontana.it/extension.js:1363
 msgid "Unpin"
 msgstr "取消固定"
 
-#: barretta@andreafontana.it/extension.js:1272
+#: barretta@andreafontana.it/extension.js:1365
 msgid "Pin"
 msgstr "固定"
 
-#: barretta@andreafontana.it/extension.js:1277
+#: barretta@andreafontana.it/extension.js:1370
 msgid "Stop keeping first"
 msgstr "不再保持在最前"
 
-#: barretta@andreafontana.it/extension.js:1277
+#: barretta@andreafontana.it/extension.js:1370
 msgid "Keep first"
 msgstr "保持在最前"
 
-#: barretta@andreafontana.it/extension.js:1279
+#: barretta@andreafontana.it/extension.js:1372
 msgid "Quit"
 msgstr "退出"
 
-#: barretta@andreafontana.it/extension.js:1509
-#: barretta@andreafontana.it/extension.js:2515
+#: barretta@andreafontana.it/extension.js:1602
+#: barretta@andreafontana.it/extension.js:2608
 #, javascript-format
 msgid "Screen %d"
 msgstr "屏幕 %d"
 
-#: barretta@andreafontana.it/extension.js:1632
-#: barretta@andreafontana.it/extension.js:2822
+#: barretta@andreafontana.it/extension.js:1725
+#: barretta@andreafontana.it/extension.js:2915
 msgid "System tray"
 msgstr "系统托盘"
 
-#: barretta@andreafontana.it/extension.js:2420
+#: barretta@andreafontana.it/extension.js:2513
 msgid "Search: title, app, “desktop 2”…"
 msgstr "搜索：标题、应用、“桌面 2”…"
 
-#: barretta@andreafontana.it/extension.js:2432
+#: barretta@andreafontana.it/extension.js:2525
 msgid "No windows found"
 msgstr "未找到窗口"
 
-#: barretta@andreafontana.it/extension.js:2437
+#: barretta@andreafontana.it/extension.js:2530
 msgid "Enter: go to the window · Ctrl+Enter: keep the bar filtered"
 msgstr "回车：转到窗口 · Ctrl+回车：保持栏的筛选"
 
-#: barretta@andreafontana.it/extension.js:2518
+#: barretta@andreafontana.it/extension.js:2611
 msgid "All desktops"
 msgstr "所有桌面"
 
-#: barretta@andreafontana.it/extension.js:2520
+#: barretta@andreafontana.it/extension.js:2613
 #, javascript-format
 msgid "Desktop %d"
 msgstr "桌面 %d"
 
-#: barretta@andreafontana.it/extension.js:2549
+#: barretta@andreafontana.it/extension.js:2642
 msgid "type to narrow down"
 msgstr "输入以缩小范围"
 
-#: barretta@andreafontana.it/extension.js:2743
+#: barretta@andreafontana.it/extension.js:2836
 msgid "A light app bar: zero calories for your CPU."
 msgstr "轻量应用栏：给你的 CPU 零卡路里。"
 
-#: barretta@andreafontana.it/extension.js:2744
+#: barretta@andreafontana.it/extension.js:2837
 #, javascript-format
 msgid "Version %s"
 msgstr "版本 %s"
 
-#: barretta@andreafontana.it/extension.js:2749
-#: barretta@andreafontana.it/extension.js:2756
+#: barretta@andreafontana.it/extension.js:2842
+#: barretta@andreafontana.it/extension.js:2849
 msgid "Bar size"
 msgstr "栏的大小"
 
-#: barretta@andreafontana.it/extension.js:2780
+#: barretta@andreafontana.it/extension.js:2873
 msgid "Small"
 msgstr "小"
 
-#: barretta@andreafontana.it/extension.js:2781
+#: barretta@andreafontana.it/extension.js:2874
 msgid "Large"
 msgstr "大"
 
-#: barretta@andreafontana.it/extension.js:2799
+#: barretta@andreafontana.it/extension.js:2892
 msgid "Position"
 msgstr "位置"
 
-#: barretta@andreafontana.it/extension.js:2802
+#: barretta@andreafontana.it/extension.js:2895
 msgid "Left"
 msgstr "左侧"
 
-#: barretta@andreafontana.it/extension.js:2802
+#: barretta@andreafontana.it/extension.js:2895
 msgid "Bottom"
 msgstr "底部"
 
-#: barretta@andreafontana.it/extension.js:2802
+#: barretta@andreafontana.it/extension.js:2895
 msgid "Right"
 msgstr "右侧"
 
-#: barretta@andreafontana.it/extension.js:2852
+#: barretta@andreafontana.it/extension.js:2945
 msgid "Off"
 msgstr "关闭"
 
-#: barretta@andreafontana.it/extension.js:2852
+#: barretta@andreafontana.it/extension.js:2945
 msgid "Drawer"
 msgstr "抽屉"
 
-#: barretta@andreafontana.it/extension.js:2852
+#: barretta@andreafontana.it/extension.js:2945
 msgid "Visible"
 msgstr "可见"
 
-#: barretta@andreafontana.it/extension.js:2858
+#: barretta@andreafontana.it/extension.js:2951
 msgid "Visible icons"
 msgstr "可见图标"
 
-#: barretta@andreafontana.it/extension.js:2866
+#: barretta@andreafontana.it/extension.js:2959
 msgid "All"
 msgstr "全部"
 
-#: barretta@andreafontana.it/extension.js:2875
+#: barretta@andreafontana.it/extension.js:2968
 msgid "Hide automatically"
 msgstr "自动隐藏"
