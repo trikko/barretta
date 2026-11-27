@@ -17,7 +17,7 @@
 /* Icona di un'app: tutto lo stato sta nella piastrella dietro l'icona. */
 .barra-item { color: rgba(255, 255, 255, 0.87); }
 .barra-tile { border-radius: 4px; }
-.barra-item.running .barra-tile { background-color: rgba(255, 255, 255, 0.10); }
+.barra-item.running .barra-tile { background-color: rgba(255, 255, 255, 0.10); border: 1px solid rgba(255, 255, 255, 0.35); }
 .barra-item:hover .barra-tile { background-color: rgba(255, 255, 255, 0.16); }
 .barra-item:active .barra-tile,
 .barra-item.menu-open .barra-tile { background-color: rgba(255, 255, 255, 0.22); }
@@ -121,7 +121,7 @@
 .barra.light .barra-apps:hover { background-color: rgba(0, 0, 0, 0.06); }
 .barra.light .barra-apps:active { background-color: rgba(0, 0, 0, 0.1); }
 .barra.light .barra-item { color: rgba(0, 0, 0, 0.8); }
-.barra.light .barra-item.running .barra-tile { background-color: rgba(0, 0, 0, 0.07); }
+.barra.light .barra-item.running .barra-tile { background-color: rgba(0, 0, 0, 0.07); border-color: rgba(0, 0, 0, 0.25); }
 .barra.light .barra-item:hover .barra-tile { background-color: rgba(0, 0, 0, 0.11); }
 .barra.light .barra-item:active .barra-tile,
 .barra.light .barra-item.menu-open .barra-tile { background-color: rgba(0, 0, 0, 0.16); }
