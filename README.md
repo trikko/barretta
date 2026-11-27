@@ -78,8 +78,8 @@ than one window elsewhere, both open the previews right away, to pick one.
   again), close it with × or a middle click.
 - Drag icons to reorder them. The order is also the order of <kbd>Super</kbd>+<kbd>1</kbd>…<kbd>9</kbd>.
 - Keep an app first in the bar for the session, without pinning it.
-- Keep a window always on top or on all desktops, from the buttons next to × on its preview, or from
-  the right-click menu when the app has a single window.
+- Keep a window always on top or on all desktops, or bring it here from another screen, with the
+  buttons on its preview, or from the right-click menu when the app has a single window.
 - Right-click menu with the app's windows, recent files (and a way to clear them), actions, pin/unpin
   and quit.
 - Autohide (off by default).

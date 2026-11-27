@@ -739,6 +739,21 @@ class Preview {
         });
         close.connect('clicked', () => this._closeWindow(window));
         addTooltip(close, _('Close'));
+        // Solo per le finestre che stanno su un altro schermo o desktop.
+        let bring = null;
+        if (this._item?.elsewhere.includes(window)) {
+            bring = new St.Button({
+                style_class: 'barra-preview-toggle',
+                child: new St.Icon({
+                    gicon: new Gio.FileIcon({file: this._owner.dir.get_child('icons/barra-bring-here-symbolic.svg')}),
+                    icon_size: 16,
+                }),
+                accessible_name: _('Bring here'),
+            });
+            bring.connect('clicked', () => this._bringHere(window));
+            addTooltip(bring, _('Bring here'));
+            tools.add_child(bring);
+        }
         tools.add_child(above);
         tools.add_child(sticky);
         tools.add_child(close);
@@ -774,6 +789,8 @@ class Preview {
         const showTools = () => {
             const hover = button.hover;
             close.opacity = hover ? 255 : 0;
+            if (bring)
+                bring.opacity = close.opacity;
             for (const t of [above, sticky])
                 t.opacity = hover || t.checked ? 255 : 0;
             tools.x_align = hover ? Clutter.ActorAlign.CENTER : Clutter.ActorAlign.END;
@@ -796,16 +813,7 @@ class Preview {
             // passa nel gruppo di questo schermo.
             const state = Clutter.get_current_event()?.get_state() ?? 0;
             if ((state & Clutter.ModifierType.SHIFT_MASK) && this._item?.elsewhere.includes(window)) {
-                const item = this._item;
-                item._bringHere(window);
-                if (this._regroupId)
-                    GLib.source_remove(this._regroupId);
-                this._regroupId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, PREVIEW_REGROUP_DELAY, () => {
-                    this._regroupId = 0;
-                    if (this._item === item && this.actor.visible)
-                        this._show(item);
-                    return GLib.SOURCE_REMOVE;
-                });
+                this._bringHere(window);
                 return;
             }
             // Le anteprime restano aperte finché il mouse non esce: se era la
@@ -814,6 +822,23 @@ class Preview {
             this.markActive(button);
         });
         return button;
+    }
+
+    // Porta qui una finestra che sta altrove. La lista resta aperta e, appena
+    // la barra si è aggiornata, la finestra passa nel gruppo di questo schermo.
+    _bringHere(window) {
+        const item = this._item;
+        if (!item)
+            return;
+        item._bringHere(window);
+        if (this._regroupId)
+            GLib.source_remove(this._regroupId);
+        this._regroupId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, PREVIEW_REGROUP_DELAY, () => {
+            this._regroupId = 0;
+            if (this._item === item && this.actor.visible)
+                this._show(item);
+            return GLib.SOURCE_REMOVE;
+        });
     }
 
     // Chiude una finestra dall'anteprima. L'anteprima resta finché la finestra
